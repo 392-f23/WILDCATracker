@@ -1,4 +1,13 @@
+import {useNavigate} from 'react-router-dom';
+
+
+
 const NavBar = () => {
+	const navigate = useNavigate();
+	const navigate_to = (path) => {
+		navigate(path);
+	};
+
 	return (
 		<nav class='navbar navbar-expand-lg navbar-light bg-light'>
 			<div class='container-fluid'>
@@ -16,7 +25,7 @@ const NavBar = () => {
 				<div class='collapse navbar-collapse' id='navbarNav'>
 					<ul class='navbar-nav'>
 						<li class='nav-item'>
-							<a class='nav-link active' aria-current='page' href='#'>
+							<a class='nav-link active' aria-current='page' href='#' onClick={() => navigate_to("/games")}>
 								Games
 							</a>
 						</li>
