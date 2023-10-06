@@ -1,9 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
-import NavBar from "./NavBar"
-import GamesPage from "./GamesPage"
-import games_data from "../utilities/data.js";
+import NavBar from "./NavBar";
+import GamesPage from "./GamesPage";
 import PointsPage from "./PointsPage";
+import games_data from "../utilities/data.js";
+
 
 const MyRouter = () => {
 	return (
@@ -14,8 +15,8 @@ const MyRouter = () => {
 				}></Route>
 				<Route path='/games' element={
 					<div>
-						<NavBar></NavBar>
-						<GamesPage games={games_data}></GamesPage>
+						<NavBar />
+						<GamesPage games={games_data} />
 					</div>
 				}></Route>
 				<Route path='/points' element={
