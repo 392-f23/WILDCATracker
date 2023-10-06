@@ -21,12 +21,13 @@ const ImageMapping = (category) => {
 
 const AttendedGameCard = ({ game }) => {
     const date = new Date(game.date);
+    console.log(date);
     return (
         <li id={game.id} className="list-group-item custom-list">
             <div className="card-subgroup">
                 <FontAwesomeIcon icon={`${ImageMapping(game.sport)}`} />
                 <h5 className="card-title" style={{ marginLeft: "5px", marginRight: "5px" }}>{game.sport}</h5>
-                <h6 className="card-subtitle  text-muted custom-date" >{get_date(date)}</h6>
+                <h6 className="card-subtitle  text-muted custom-date" >{get_date(new Date(game.date))}</h6>
             </div>
             <h6 className="card-subtitle mb-1 text-muted" >+ {game.points}</h6>
         </li>)

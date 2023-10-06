@@ -4,7 +4,7 @@ const games_data = [
     sport: "Women’s Soccer",
     opponent: "#19 Michigan",
     location: "Lanny and Sharon Martin Stadium",
-    date: Date("2023-09-21"),
+    date: "2023-09-21",
     time: "7:00 p.m.",
     points: 8
   },
@@ -13,7 +13,7 @@ const games_data = [
     sport: "Women’s Volleyball",
     opponent: "#1 Wisconsin",
     location: "Welsh-Ryan Arena",
-    date: Date("2023-09-22"),
+    date: "2023-09-22",
     time: "7:00 p.m.",
     points: 8
   },
@@ -22,7 +22,7 @@ const games_data = [
     sport: "Men’s Football",
     opponent: "Minnesota",
     location: "Ryan Field",
-    date: Date("2023-09-23"),
+    date: "2023-09-23",
     time: "6:30 p.m.",
     points: 3
   },
@@ -31,7 +31,7 @@ const games_data = [
     sport: "Women’s Field Hockey",
     opponent: "#17 Princeton",
     location: "Lakeside Field",
-    date: Date("2023-09-24"),
+    date: "2023-09-24",
     time: "11:00 p.m.",
     points: 6
   },
@@ -40,7 +40,7 @@ const games_data = [
     sport: "Men’s Soccer",
     opponent: "Ohio State",
     location: "Lanny and Sharon Martin Stadium",
-    date: Date("2023-09-24"),
+    date: "2023-09-24",
     time: "1:00 p.m.",
     points: 4
   },
@@ -49,7 +49,7 @@ const games_data = [
     sport: "Women’s Volleyball",
     opponent: "#15 Penn State",
     location: "Welsh-Ryan Arena",
-    date: Date("2023-09-24"),
+    date: "2023-09-24",
     time: "1:00 p.m.",
     points: 6
   },
@@ -58,7 +58,7 @@ const games_data = [
     sport: "Women’s Soccer",
     opponent: "Illinois",
     location: "Lanny and Sharon Martin Stadium",
-    date: Date("2023-09-28"),
+    date: "2023-09-28",
     time: "7:00 p.m.",
     points: 4
   },
@@ -67,7 +67,7 @@ const games_data = [
     sport: "Women’s Field Hockey",
     opponent: "Michigan State",
     location: "Lakeside Field",
-    date: Date("2023-09-29"),
+    date: "2023-09-29",
     time: "3:00 p.m.",
     points: 4
   },
@@ -76,7 +76,7 @@ const games_data = [
     sport: "Women’s Volleyball",
     opponent: "Michigan State",
     location: "Welsh-Ryan Arena",
-    date: Date("2023-09-29"),
+    date: "2023-09-29",
     time: "7:00 p.m.",
     points: 4
   },
@@ -85,7 +85,7 @@ const games_data = [
     sport: "Men’s Football",
     opponent: "#6 Penn State",
     location: "Ryan Field",
-    date: Date("2023-09-30"),
+    date: "2023-09-30",
     time: "11:00 a.m.",
     points: 3
   },
@@ -94,7 +94,7 @@ const games_data = [
     sport: "Women’s Field Hockey",
     opponent: "#15 Michigan",
     location: "Lakeside Field",
-    date: Date("2023-10-1"),
+    date: "2023-10-01",
     time: "11:00 a.m.",
     points: 4
   },
@@ -103,7 +103,7 @@ const games_data = [
     sport: "Women’s Soccer",
     opponent: "Nebraska",
     location: "Lanny and Sharon Martin Stadium",
-    date: Date("2023-10-1"),
+    date: "2023-10-01",
     time: "2:00 p.m.",
     points: 4
   },
@@ -112,7 +112,7 @@ const games_data = [
     sport: "Men’s Soccer",
     opponent: "Green Bay",
     location: "Lanny and Sharon Martin Stadium",
-    date: Date("2023-10-3"),
+    date: "2023-10-03",
     time: "6:00 p.m.",
     points: 4
   },
@@ -121,7 +121,7 @@ const games_data = [
     sport: "Men’s Football",
     opponent: "Howard",
     location: "Ryan Field",
-    date: Date("2023-10-7"),
+    date: "2023-10-07",
     time: "2:00 p.m.",
     points: 4
   },
@@ -130,7 +130,7 @@ const games_data = [
     sport: "Men’s Soccer",
     opponent: "Rutgers",
     location: "Lanny and Sharon Martin Stadium",
-    date: Date("2023-10-8"),
+    date: "2023-10-08",
     time: "1:00 p.m.",
     points: 4
   },
@@ -139,7 +139,7 @@ const games_data = [
     sport: "Women’s Volleyball",
     opponent: "Maryland",
     location: "Welsh-Ryan Arena",
-    date: Date("2023-10-13"),
+    date: "2023-10-13",
     time: "7:00 p.m.",
     points: 4
   },
@@ -148,7 +148,7 @@ const games_data = [
     sport: "Women’s Volleyball",
     opponent: "Nebraska",
     location: "Welsh-Ryan Arena",
-    date: Date("2023-10-18"),
+    date: "2023-10-18",
     time: "7:00 p.m.",
     points: 4
   },
@@ -157,7 +157,7 @@ const games_data = [
     sport: "Women’s Soccer",
     opponent: "Minnesota",
     location: "Lanny and Sharon Martin Stadium",
-    date: Date("2023-10-19"),
+    date: "2023-10-19",
     time: "7:00 p.m.",
     points: 4
   },
@@ -166,7 +166,7 @@ const games_data = [
     sport: "Men’s Soccer",
     opponent: "Michigan State",
     location: "Lanny and Sharon Martin Stadium",
-    date: Date("2023-10-20"),
+    date: "2023-10-20",
     time: "7:00 p.m.",
     points: 4
   },
@@ -175,7 +175,7 @@ const games_data = [
     sport: "Women’s Volleyball",
     opponent: "Michigan",
     location: "Welsh-Ryan Arena",
-    date: Date("2023-10-21"),
+    date: "2023-10-21",
     time: "7:00 p.m.",
     points: 4
   },
@@ -184,7 +184,7 @@ const games_data = [
     sport: "Men’s Soccer",
     opponent: "Indiana",
     location: "Lanny and Sharon Martin Stadium",
-    date: Date("2023-10-24"),
+    date: "2023-10-24",
     time: "7:00 p.m.",
     points: 4
   },
@@ -193,7 +193,7 @@ const games_data = [
     sport: "Women’s Field Hockey",
     opponent: "Maryland",
     location: "Lakeside Field",
-    date: Date("2023-10-26"),
+    date: "2023-10-26",
     time: "3:00 p.m.",
     points: 4
   },
@@ -202,7 +202,7 @@ const games_data = [
     sport: "Men’s Football",
     opponent: "Maryland",
     location: "Ryan Field",
-    date: Date("2023-10-28"),
+    date: "2023-10-28",
     time: "TBA",
     points: 3
   },
