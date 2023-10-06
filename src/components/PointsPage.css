@@ -1,0 +1,29 @@
+.content {
+    max-width: 500px;
+    margin: auto;
+}
+
+.custom-button {
+    width: 150px !important;
+}
+
+.custom-card {
+    margin-top: 10px;
+}
+
+.custom-list {
+    height: 50px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding-top: 17px;
+}
+
+.custom-date {
+    font-size: 12px;
+}
+
+.card-subgroup {
+    display: flex;
+    align-items: baseline;
+}
