@@ -6,15 +6,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import NavBar from "./components/NavBar";
 import MyRouter from "./components/Router";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faVolleyball, faHockeyPuck, faFutbol, faBasketball, faFootball, faBaseball, faMedal } from "@fortawesome/free-solid-svg-icons";
+library.add( faVolleyball, faHockeyPuck, faFutbol, faBasketball, faFootball, faBaseball, faMedal);
 
 const Main = () => {
 	console.log(games_data);
 
 	return (
-		<MyRouter>
-			<NavBar>
-			</NavBar>
-		</MyRouter>
+		<div style={{background:'whitesmoke'}}>
+			<MyRouter>
+			</MyRouter>
+		</div>
 
 	);
 };
