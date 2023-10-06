@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import NavBar from "./NavBar";
 import GamesPage from "./GamesPage";
 import PointsPage from "./PointsPage";
+import HomePage from "./HomePage";
 import games_data from "../utilities/data.js";
 
 
@@ -14,16 +15,13 @@ const MyRouter = () => {
 					<NavBar></NavBar>
 				}></Route>
 				<Route path='/games' element={
-					<div>
-						<NavBar />
-						<GamesPage games={games_data} />
-					</div>
+					<GamesPage games={games_data} />
 				}></Route>
 				<Route path='/points' element={
-					<PointsPage></PointsPage>
+					<PointsPage />
 				}></Route>
 				<Route path='/home' element={
-					<NavBar></NavBar>
+					<HomePage />
 				}></Route>
 			</Routes>
 		</BrowserRouter>
