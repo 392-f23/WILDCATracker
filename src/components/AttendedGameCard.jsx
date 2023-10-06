@@ -1,26 +1,35 @@
 import './PointsPage.css'
 import { get_date } from '../utilities/get_date';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+
+const ImageMapping = (category) => {
+    if (category === "Women’s Soccer" || category === "Men’s Soccer")
+        return "futbol";
+    else if (category === "Men's Football")
+        return "football";
+    else if (category === "Women’s Volleyball")
+        return "volleyball";
+    else if (category === "Women’s Field Hockey")
+        return "hockey-puck";
+    else if (category === "Men's Basketball" || category === "Women's Basketball")
+        return "basketball";
+    else if (category === "Men's Baseball" || category === "Women's Softball")
+        return "baseball";
+    else return "medal";
+};
 
 const AttendedGameCard = ({ game }) => {
     const date = new Date(game.date);
     return (
-        <li className="list-group-item custom-list">
+        <li id={game.id} className="list-group-item custom-list">
             <div className="card-subgroup">
-                <h5 className="card-title" style={{ marginRight: "5px" }}>{game.sport}</h5>
+                <FontAwesomeIcon icon={`${ImageMapping(game.sport)}`} />
+                <h5 className="card-title" style={{ marginLeft: "5px", marginRight: "5px" }}>{game.sport}</h5>
                 <h6 className="card-subtitle  text-muted custom-date" >{get_date(date)}</h6>
             </div>
             <h6 className="card-subtitle mb-1 text-muted" >+ {game.points}</h6>
         </li>)
-    // <div className="card custom-card">
-    //     <div className="card-body">
-    //         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-    //             <h5 className="card-title">{game.sport}</h5>
-    //             <h6 className="card-subtitle mb-2 text-muted" >+ {game.points}</h6>
-
-    //         </div>
-
-    //     </div>
-    // </div>
 
 }
 
