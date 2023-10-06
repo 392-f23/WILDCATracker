@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import NavBar from "./NavBar"
-import GameCard from "./GameCard"
+import GamesPage from "./GamesPage"
 import games_data from "../utilities/data.js";
 
 const MyRouter = () => {
@@ -9,13 +9,13 @@ const MyRouter = () => {
 		<BrowserRouter>
 			<Routes>
 				<Route path='/' element = {
-					<div>
-						<NavBar></NavBar>
-						<GameCard Game={games_data["1"]}></GameCard>
-					</div>
+					<NavBar></NavBar>
 				}></Route>
 				<Route path='/games' element = {
-					<NavBar></NavBar>
+					<div>
+						<NavBar></NavBar>
+						<GamesPage games={games_data}></GamesPage>
+					</div>
 				}></Route>
 				<Route path='/points' element = {
 					<NavBar></NavBar>
