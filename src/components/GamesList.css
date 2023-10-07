@@ -1,4 +1,9 @@
 .games-list {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, 20rem);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.games-list > * {
+    flex: 1 0 10rem;
 }
