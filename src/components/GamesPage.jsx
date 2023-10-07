@@ -1,12 +1,14 @@
-import React from "react";
 import GamesList from "./GamesList";
+import "./GamesPage.css";
+import NavBar from "./NavBar";
 
-const GamesPage = ({games}) => {
-    return (
-        <div>
-            <GamesList games={games} />
-        </div>
-    );
-};  
+const GamesPage = ({ games }) => {
+	return (
+		<div className='content'>
+			<NavBar />
+			<GamesList games={games} />
+		</div>
+	);
+};
 
 export default GamesPage;
