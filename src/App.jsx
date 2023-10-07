@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useContext } from "react";
 import logo from "./logo.svg";
 import "./App.css";
@@ -30,11 +30,22 @@ import {LoginContext} from "./utilities/StateProvider";
 
 const Main = () => {
     const [loginState] = useContext(LoginContext);
-    console.log(games_data);
-    console.log(loginState);
+
+	useEffect(() => {
+
+        // Check local storage for user data on component mount
+        const storedUserData = localStorage.getItem('userData');
+        if (storedUserData != null) {
+            loginState.user = JSON.parse(storedUserData)
+        }
+
+    }, [loginState.user]); // Empty dependency array ensures this runs only once on mount
+
  	return ( loginState.user ? 
 		<div style={{ background: "whitesmoke" }}>
-			<MyRouter></MyRouter> 
+			<MyRouter>
+				<NavBar />
+			</MyRouter> 
 		</div> : 
 		<Login />
 	);

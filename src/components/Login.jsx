@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./Login.css";
 import { auth } from "../utilities/firebase";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
@@ -17,6 +17,7 @@ const Login = () => {
                     user: result.user
                 });
                 console.log("User logged in successfuly!");
+                localStorage.setItem('userData', JSON.stringify(result.user));
             })
             .catch(error => {
                 alert(error.message);

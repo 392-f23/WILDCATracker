@@ -7,8 +7,7 @@ export const loginActions = {
     set_user: "set_user"
 };
 
-export const reducer = (loginState, loginAction) =>{
-    console.log("called reducer with:", loginAction);   
+export const reducer = (loginState, loginAction) =>{ 
     switch(loginActions.type){
     case loginAction.set_user:
         return {
