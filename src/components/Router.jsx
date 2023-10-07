@@ -5,24 +5,19 @@ import GamesPage from "./GamesPage";
 import PointsPage from "./PointsPage";
 import HomePage from "./HomePage";
 import games_data from "../utilities/data.js";
-
+import users_data from "../utilities/users_data";
 
 const MyRouter = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/' element={
-					<NavBar></NavBar>
-				}></Route>
-				<Route path='/games' element={
-					<GamesPage games={games_data} />
-				}></Route>
-				<Route path='/points' element={
-					<PointsPage />
-				}></Route>
-				<Route path='/home' element={
-					<HomePage />
-				}></Route>
+				<Route path='/' element={<NavBar></NavBar>}></Route>
+				<Route path='/games' element={<GamesPage games={games_data} />}></Route>
+				<Route
+					path='/points'
+					element={<PointsPage user={users_data[0]} />}
+				></Route>
+				<Route path='/home' element={<HomePage />}></Route>
 			</Routes>
 		</BrowserRouter>
 	);

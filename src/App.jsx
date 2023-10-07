@@ -4,22 +4,35 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import NavBar from "./components/NavBar";
 import MyRouter from "./components/Router";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faVolleyball, faHockeyPuck, faFutbol, faBasketball, faFootball, faBaseball, faMedal } from "@fortawesome/free-solid-svg-icons";
-library.add(faVolleyball, faHockeyPuck, faFutbol, faBasketball, faFootball, faBaseball, faMedal);
+import {
+	faVolleyball,
+	faHockeyPuck,
+	faFutbol,
+	faBasketball,
+	faFootball,
+	faBaseball,
+	faMedal,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(
+	faVolleyball,
+	faHockeyPuck,
+	faFutbol,
+	faBasketball,
+	faFootball,
+	faBaseball,
+	faMedal
+);
 
 const Main = () => {
-
-  return (
-    <div style={{ background: 'whitesmoke' }}>
-      <MyRouter>
-      </MyRouter>
-    </div>
-
-  );
+	return (
+		<div style={{ background: "whitesmoke" }}>
+			<MyRouter></MyRouter>
+		</div>
+	);
 };
 
 const App = () => {
-  return <Main></Main>;
+	return <Main></Main>;
 };
 
 export default App;

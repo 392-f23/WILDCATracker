@@ -1,6 +1,4 @@
-import { useNavigate } from 'react-router-dom';
-
-
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
 	const navigate = useNavigate();
@@ -25,17 +23,30 @@ const NavBar = () => {
 				<div className='collapse navbar-collapse' id='navbarNav'>
 					<ul className='navbar-nav'>
 						<li className='nav-item'>
-							<a className='nav-link active' aria-current='page' href='#' onClick={() => navigate_to("/games")}>
+							<a
+								className='nav-link active'
+								aria-current='page'
+								href='#'
+								onClick={() => navigate_to("/games")}
+							>
 								Games
 							</a>
 						</li>
 						<li className='nav-item'>
-							<a className='nav-link' href='#' onClick={() => navigate_to("/points")}>
+							<a
+								className='nav-link'
+								href='#'
+								onClick={() => navigate_to("/points")}
+							>
 								Points
 							</a>
 						</li>
 						<li className='nav-item'>
-							<a className='nav-link' href='#' onClick={() => navigate_to("/home")}>
+							<a
+								className='nav-link'
+								href='#'
+								onClick={() => navigate_to("/home")}
+							>
 								Home
 							</a>
 						</li>
