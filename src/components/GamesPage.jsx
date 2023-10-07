@@ -1,11 +1,12 @@
-import GamesList from "./GamesList"
+import React from "react";
+import GamesList from "./GamesList";
 
 const GamesPage = ({games}) => {
     return (
-      <div>
-        <GamesList games={games} />
-      </div>
+        <div>
+            <GamesList games={games} />
+        </div>
     );
-  };  
+};  
 
 export default GamesPage;
