@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import GameCard from "./GameCard";
+import users_data from '../utilities/users_data';
 import "./GamesList.css";
 
 const GamesList = ({ games }) => {
@@ -76,9 +77,11 @@ const GamesList = ({ games }) => {
 		</div>
             
             <div className='games-list'>
-                {Object.entries(filteredGames).map(([id, game]) => {
-                    return <GameCard key={id} game={game} />;
-                })}
+                {Object.entries(filteredGames).map(([id, game]) => (
+                    users_data[0].attended_games.includes(game.id) ? 
+						<GameCard key={id} game={game} gameAdded={true}/> :
+						<GameCard key={id} game={game} gameAdded={false}/> 
+                ))}
             </div>
         </>
     );

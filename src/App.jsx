@@ -39,13 +39,11 @@ const Main = () => {
             loginState.user = JSON.parse(storedUserData)
         }
 
-    }, [loginState.user]); // Empty dependency array ensures this runs only once on mount
+    }, []); // Empty dependency array ensures this runs only once on mount
 
  	return ( loginState.user ? 
 		<div style={{ background: "whitesmoke" }}>
-			<MyRouter>
-				<NavBar />
-			</MyRouter> 
+			<MyRouter />
 		</div> : 
 		<Login />
 	);

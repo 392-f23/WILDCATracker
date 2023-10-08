@@ -17,7 +17,7 @@ const ImageMapping = (category) => {
 
 const AttendedGameCard = ({ game }) => {
 	const date = new Date(game.date);
-	console.log(date);
+	// console.log(date);
 	return (
 		<li id={game.id} className='list-group-item custom-list'>
 			<div className='card-subgroup'>

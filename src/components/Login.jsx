@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import "./Login.css";
 import { auth } from "../utilities/firebase";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
@@ -23,7 +23,7 @@ const Login = () => {
                 alert(error.message);
             });
     };
-
+    
     return (
         <div className="login">
             <div className="login-logo">
