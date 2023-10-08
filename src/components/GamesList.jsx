@@ -5,6 +5,12 @@ import users_data from '../utilities/users_data';
 import "./GamesList.css";
 
 const GamesList = ({ games }) => {
+	if (!localStorage.getItem('users')) {
+		localStorage.setItem('users', JSON.stringify(users_data[0].attended_games));
+	}
+	
+	const attendedGames = JSON.parse(localStorage.getItem('users'));
+	
     const [filteredGames, setFilteredGames] = useState(games);
 
     const handleFilter = (sport) => {
@@ -78,7 +84,7 @@ const GamesList = ({ games }) => {
             
             <div className='games-list'>
                 {Object.entries(filteredGames).map(([id, game]) => (
-                    users_data[0].attended_games.includes(game.id) ? 
+                    attendedGames.includes(game.id) ? 
 						<GameCard key={id} game={game} gameAdded={true}/> :
 						<GameCard key={id} game={game} gameAdded={false}/> 
                 ))}

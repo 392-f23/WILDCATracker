@@ -1,6 +1,22 @@
 import React, { useState } from 'react';
 import users_data from '../utilities/users_data';
 
+const addGame = (gameId) => {
+    let attendedGames = JSON.parse(localStorage.getItem('users'));
+    attendedGames.push(gameId);
+    localStorage.setItem('users', JSON.stringify(attendedGames));
+}
+
+const removeGame = (gameId) => {
+    let attendedGames = JSON.parse(localStorage.getItem('users'));
+
+    if (attendedGames.indexOf(gameId) !== -1) {
+        attendedGames.splice(attendedGames.indexOf(gameId), 1);
+    }
+
+    localStorage.setItem('users', JSON.stringify(attendedGames));
+}
+
 const GameCard = ({ game, gameAdded }) => {
     const [buttonText, setButtonText] = useState(gameAdded ? 'Points Added' : 'Points ' + game.points);
     const [buttonColor, setButtonColor] = useState(gameAdded ? 'btn-success' : 'btn-primary');
@@ -9,16 +25,16 @@ const GameCard = ({ game, gameAdded }) => {
         if (buttonText === 'Points ' + game.points) {
             setButtonText('Points Added');
             setButtonColor('btn-success');
-            users_data[0].attended_games.push(game.id);
+            addGame(game.id);
             gameAdded = false;
         } else {
             setButtonText('Points ' + game.points);
             setButtonColor('btn-primary');
-            users_data[0].attended_games.splice(users_data[0].attended_games.indexOf(game.id), 1);
+            removeGame(game.id);
             gameAdded = true;
         }
     };
-    
+
 	return (
 		<div className='card m-2 p-2'>
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%", padding: "5px" }}>
