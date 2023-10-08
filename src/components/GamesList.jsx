@@ -5,11 +5,11 @@ import users_data from '../utilities/users_data';
 import "./GamesList.css";
 
 const GamesList = ({ games }) => {
-	if (!localStorage.getItem('users')) {
-		localStorage.setItem('users', JSON.stringify(users_data[0].attended_games));
+	if (!localStorage.getItem('games_attended')) {
+		localStorage.setItem('games_attended', JSON.stringify(users_data[0].attended_games));
 	}
 	
-	const attendedGames = JSON.parse(localStorage.getItem('users'));
+	const attendedGames = JSON.parse(localStorage.getItem('games_attended'));
 	
     const [filteredGames, setFilteredGames] = useState(games);
 
