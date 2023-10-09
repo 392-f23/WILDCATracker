@@ -1,0 +1,17 @@
+.game-card-button-selected {
+	width: 100%;
+	background: rgb(165, 133, 213);
+	color: white;
+	padding-inline: 10px;
+	padding-block: 6px;
+	border-radius: 5px;
+}
+
+.game-card-button-unselected {
+	width: 100%;
+	background: rgb(78, 42, 132);
+	color: white;
+	padding-inline: 10px;
+	padding-block: 6px;
+	border-radius: 5px;
+}

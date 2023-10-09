@@ -1,5 +1,3 @@
-
-
 const users_data = [
 	{
 		user_id: 1,
