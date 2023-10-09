@@ -17,7 +17,7 @@ const Login = () => {
                     user: result.user
                 });
                 console.log("User logged in successfuly!");
-                localStorage.setItem('userData', JSON.stringify(result.user));
+                localStorage.setItem('user', JSON.stringify(result.user));
             })
             .catch(error => {
                 alert(error.message);

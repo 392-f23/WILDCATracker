@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import users_data from '../utilities/users_data';
 
 const addGame = (gameId) => {
-    let attendedGames = JSON.parse(localStorage.getItem('users'));
+    let attendedGames = JSON.parse(localStorage.getItem('games_attended'));
     attendedGames.push(gameId);
-    localStorage.setItem('users', JSON.stringify(attendedGames));
+    localStorage.setItem('games_attended', JSON.stringify(attendedGames));
 }
 
 const removeGame = (gameId) => {
-    let attendedGames = JSON.parse(localStorage.getItem('users'));
+    let attendedGames = JSON.parse(localStorage.getItem('games_attended'));
 
     if (attendedGames.indexOf(gameId) !== -1) {
         attendedGames.splice(attendedGames.indexOf(gameId), 1);
     }
 
-    localStorage.setItem('users', JSON.stringify(attendedGames));
+    localStorage.setItem('games_attended', JSON.stringify(attendedGames));
 }
 
 const GameCard = ({ game, gameAdded }) => {

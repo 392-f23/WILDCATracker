@@ -29,19 +29,13 @@ import Login from "./components/Login";
 import {LoginContext} from "./utilities/StateProvider";
 
 const Main = () => {
-    const [loginState] = useContext(LoginContext);
+    let [loginState] = useContext(LoginContext);
 
-	useEffect(() => {
-
-        // Check local storage for user data on component mount
-        const storedUserData = localStorage.getItem('userData');
-        if (storedUserData != null) {
-            loginState.user = JSON.parse(storedUserData)
-        }
-
-    }, []); // Empty dependency array ensures this runs only once on mount
-
- 	return ( loginState.user ? 
+	console.log(loginState);
+	if(!loginState.user && localStorage.getItem('user'))
+		loginState.user = localStorage.getItem('user')
+		
+ 	return ( loginState.user  ? 
 		<div style={{ background: "whitesmoke" }}>
 			<MyRouter />
 		</div> : 
