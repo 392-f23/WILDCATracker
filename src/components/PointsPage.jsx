@@ -42,7 +42,6 @@ const PointsPage = () => {
 			)
 		);
 	};
-	console.log(past);
 	return (
 		<div className='content'>
 			<NavBar></NavBar>

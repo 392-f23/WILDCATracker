@@ -45,8 +45,10 @@ const AttendedGamesChart = ({ games, window }) => {
 
     const dateLabels = generateEquallySpreadDates(firstDate, new Date(), 7);
     const points = [games.filter((game) => new Date(game.date) <= firstDate).reduce((sum, game) => sum + game.points, 0)];
+    var lastPoints = points[0];
     for (let i = 1; i < dateLabels.length; i++) {
-        const newPoints = games.filter((game) => dateLabels[i - 1] < new Date(game.date) <= dateLabels[i]).reduce((sum, game) => sum + game.points, 0);
+        const newPoints = games.filter((game) => dateLabels[i - 1] < new Date(game.date) && new Date(game.date) <= dateLabels[i]).reduce((sum, game) => sum + game.points, lastPoints);
+        lastPoints = newPoints;
         points.push(newPoints);
     };
     useEffect(() => {
