@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Homepage.css';
+import './HomePage.css';
 import mbbGamesData from '../utilities/mbbGames.json';
 import NavBar from './NavBar';
 

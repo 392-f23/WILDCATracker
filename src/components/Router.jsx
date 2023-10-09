@@ -11,7 +11,7 @@ const MyRouter = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/' element={<NavBar></NavBar>}></Route>
+				<Route path='/' element={<GamesPage games={games_data} />}></Route>
 				<Route path='/games' element={<GamesPage games={games_data} />}></Route>
 				<Route
 					path='/points'
