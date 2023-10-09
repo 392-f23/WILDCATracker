@@ -32,18 +32,16 @@ const GameCard = ({ game, gameAdded }) => {
 			setButtonText('Points Added');
 			setButtonStyle('selected');
 			addGame(game.id);
-			gameAdded = true;
 		} else {
 			setButtonText('Points ' + game.points);
 			setButtonStyle('unselected');
 			removeGame(game.id);
-			gameAdded = false;
 		}
 		// setAttended((prev) => !prev);
 		// setButtonText(attended ? "Points Added" : "Points " + game.points);
 		// setButtonStyle(attended ? "selected" : "unselected");
 	};
-
+	
 	return (
 		<div className='card m-2 p-2'>
 			<div
