@@ -15,7 +15,7 @@ const MyRouter = () => {
 				<Route path='/games' element={<GamesPage games={games_data} />}></Route>
 				<Route
 					path='/points'
-					element={<PointsPage user={users_data[0]} />}
+					element={<PointsPage />}
 				></Route>
 				<Route path='/home' element={<HomePage />}></Route>
 			</Routes>
