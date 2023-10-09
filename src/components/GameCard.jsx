@@ -19,23 +19,29 @@ const removeGame = (gameId) => {
 };
 
 const GameCard = ({ game, gameAdded }) => {
-	const [attended, setAttended] = useState(gameAdded);
+	//const [attended, setAttended] = useState(gameAdded);
 	const [buttonText, setButtonText] = useState(
-		gameAdded ? "Points Added" : "Points " + game.points
+		gameAdded ? "Points Added " : "Points " + game.points
 	);
 	const [buttonStyle, setButtonStyle] = useState(
 		gameAdded ? "selected" : "unselected"
 	);
-
+		
 	const handleButtonClick = () => {
-		if (gameAdded) {
-			removeGame(game.id);
-		} else {
+		if (buttonText === 'Points ' + game.points) {
+			setButtonText('Points Added');
+			setButtonStyle('selected');
 			addGame(game.id);
+			gameAdded = true;
+		} else {
+			setButtonText('Points ' + game.points);
+			setButtonStyle('unselected');
+			removeGame(game.id);
+			gameAdded = false;
 		}
-		setAttended((prev) => !prev);
-		setButtonText(attended ? "Points Added" : "Points " + game.points);
-		setButtonStyle(attended ? "selected" : "unselected");
+		// setAttended((prev) => !prev);
+		// setButtonText(attended ? "Points Added" : "Points " + game.points);
+		// setButtonStyle(attended ? "selected" : "unselected");
 	};
 
 	return (

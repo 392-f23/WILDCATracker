@@ -11,7 +11,7 @@ const GamesList = ({ games }) => {
 			JSON.stringify(users_data[0].attended_games)
 		);
 	}
-
+	
 	const attendedGames = JSON.parse(localStorage.getItem("games_attended"));
 
 	const [filteredGames, setFilteredGames] = useState(games);
