@@ -22,6 +22,8 @@ const AttendedGamesChart = ({ games, window }) => {
 				datasets: [
 					{
 						data: games.map((game) => game.points),
+						borderColor: "#4E2A84",
+						backgroundColor: "#4E2A84",
 					},
 				],
 			},

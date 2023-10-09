@@ -8,16 +8,16 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBryjbyZ8gMrcE-guMryC7KTv8eVgvt5Ks",
-  authDomain: "wildcatracker.firebaseapp.com",
-  projectId: "wildcatracker",
-  storageBucket: "wildcatracker.appspot.com",
-  messagingSenderId: "748740578016",
-  appId: "1:748740578016:web:0b406fbe2576528ff81e85",
-  measurementId: "G-Y4FZZ4GRKH"
+	apiKey: "AIzaSyBryjbyZ8gMrcE-guMryC7KTv8eVgvt5Ks",
+	authDomain: "wildcatracker.firebaseapp.com",
+	projectId: "wildcatracker",
+	storageBucket: "wildcatracker.appspot.com",
+	messagingSenderId: "748740578016",
+	appId: "1:748740578016:web:0b406fbe2576528ff81e85",
+	measurementId: "G-Y4FZZ4GRKH",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-export const auth  =  getAuth(app);
+export const auth = getAuth(app);

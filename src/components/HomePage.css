@@ -24,10 +24,10 @@
 }
 
 button {
-	background-color: lightpurple;
+	background-color: rgb(57, 35, 89);
 	border: none;
 	padding: 10px 20px;
-	margin-bottom: 10px;
+	margin-bottom: 100px;
 	cursor: pointer;
 	color: white;
 	border-radius: 5px;
@@ -35,16 +35,17 @@ button {
 }
 
 button:hover {
-	background-color: #b19cd9;
-	
+	background-color: #000000;
 }
 
 ul {
 	list-style-type: none;
 	padding: 0;
-} 
+}
 
-
+.here {
+	background-color: black;
+}
 
 /* .content {
 	max-width: 500px;
@@ -90,11 +91,7 @@ button:hover {
 		padding: 0;
 	} */
 
-
-
-
-
-	/* .content {
+/* .content {
 		max-width: 650px;
 		margin: 40px auto;
 		background-color: #6B5B95; 

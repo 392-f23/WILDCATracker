@@ -19,7 +19,7 @@ const AttendedGameCard = ({ game }) => {
 	const date = new Date(game.date);
 	// console.log(date);
 	return (
-		<li id={game.id} className='list-group-item custom-list'>
+		<li id={game.id} className='custom-list'>
 			<div className='card-subgroup'>
 				<FontAwesomeIcon icon={`${ImageMapping(game.sport)}`} />
 				<h5

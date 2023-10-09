@@ -38,27 +38,30 @@ const PointsPage = ({ user }) => {
 				className='button-group'
 				style={{ display: "flex", alignItems: "center" }}
 			>
-				{historyWindows.map((option) => {
-					return (
-						<div key={option} style={{ margin: "auto" }}>
-							<input
-								type='radio'
-								className='btn-check'
-								name='btnradio'
-								id={option}
-								autoComplete='off'
-								defaultChecked={window == option}
-								onClick={() => filterGames(option)}
-							/>
-							<label
-								className='btn btn-outline-primary custom-button'
-								htmlFor={option}
-							>
-								{option}
-							</label>
-						</div>
-					);
-				})}
+				{historyWindows.map((option) => (
+					<div key={option} style={{ margin: "auto" }}>
+						<input
+							type='radio'
+							className='btn-check'
+							name='btnradio'
+							id={option}
+							autoComplete='off'
+							defaultChecked={window == option}
+							onClick={() => filterGames(option)}
+						/>
+						<label
+							className={
+								option === window
+									? "time-chart-label-selected"
+									: "time-chart-label-unselected"
+							}
+							id={option}
+							htmlFor={option}
+						>
+							{option}
+						</label>
+					</div>
+				))}
 			</div>
 			<AttendedGamesChart games={filteredGames} window={window} />
 			<AttendedGamesList games={filteredGames} />
