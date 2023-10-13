@@ -46,19 +46,32 @@ const GamesList = ({ games }) => {
 		}
 	};
 
-	const handleFilterTime = (time) => {
-		if (time === "all") {
+	const handleFilterTime = (filterType) => {
+		const currentDate = new Date();
+		currentDate.setHours(0, 0, 0, 0); 
+	
+		let filtered = [];
+		if (filterType === "all") {
 			setFilteredGames(games);
 			setTimeFilter("Time");
-		} else {
-			const filtered = Object.entries(time).filter(([id, game]) =>
-				game.sport.includes(time)
-			);
-			setFilteredGames(Object.fromEntries(filtered));
-			setTimeFilter(time);
+			return;
+		} else if (filterType === "Today") {
+			filtered = games.filter(game => {
+				const gameDate = new Date(game.date);
+				gameDate.setHours(0, 0, 0, 0);
+				return gameDate.getTime() === currentDate.getTime();
+			});
+		} else if (filterType === "Future") {
+			filtered = games.filter(game => new Date(game.date).getTime() > currentDate.getTime());
+		} else if (filterType === "Past") {
+			filtered = games.filter(game => new Date(game.date).getTime() < currentDate.getTime());
 		}
+	
+		setFilteredGames(filtered);
+		setTimeFilter(filterType);
 	};
-
+	
+	
 	return (
 		<>
 			<div className='dropdown-wrapper'>
@@ -109,11 +122,14 @@ const GamesList = ({ games }) => {
 							Show All
 						</Dropdown.Item>
 						<Dropdown.Divider></Dropdown.Divider>
-						<Dropdown.Item onClick={() => handleFilterTime("")}>
-							Future
-						</Dropdown.Item>
-						<Dropdown.Item onClick={() => handleFilterTime("")}>
+						<Dropdown.Item onClick={() => handleFilterTime("Past")}>
 							Past
+						</Dropdown.Item>
+						<Dropdown.Item onClick={() => handleFilterTime("Today")}>
+							Today
+						</Dropdown.Item>
+						<Dropdown.Item onClick={() => handleFilterTime("Future")}>
+							Future
 						</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>

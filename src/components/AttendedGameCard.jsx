@@ -5,13 +5,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const ImageMapping = (category) => {
     if (category === "Women’s Soccer" || category === "Men’s Soccer")
         return "futbol";
-    else if (category === "Men's Football") return "football";
+    else if (category === "Men’s Football") return "football";
     else if (category === "Women’s Volleyball") return "volleyball";
     else if (category === "Women’s Field Hockey") return "hockey-puck";
-    else if (category === "Men's Basketball" || category === "Women's Basketball")
+    else if (category === "Men’s Basketball" || category === "Women’s Basketball")
         return "basketball";
-    else if (category === "Men's Baseball" || category === "Women's Softball")
+    else if (category === "Men’s Baseball" || category === "Women’s Softball")
         return "baseball";
+	else if (category === "Men’s Wrestling" || category === "Women’s Softball")
+        return "dumbbell";
     else return "medal";
 };
 

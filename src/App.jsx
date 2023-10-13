@@ -15,6 +15,8 @@ import {
 	faFootball,
 	faBaseball,
 	faMedal,
+	faDumbbell,
+	faBaseballBatBall,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
 	faVolleyball,
