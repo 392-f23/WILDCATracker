@@ -17,8 +17,6 @@ const Login = () => {
 					user: result.user,
 				});
 				console.log("User logged in successfuly!");
-				//
-				//set (ref(), result.user.id, games_attende: [])
 				localStorage.setItem("user", JSON.stringify(result.user));
 			})
 			.catch((error) => {
