@@ -13,10 +13,7 @@ const MyRouter = () => {
 			<Routes>
 				<Route path='/' element={<GamesPage games={games_data} />}></Route>
 				<Route path='/games' element={<GamesPage games={games_data} />}></Route>
-				<Route
-					path='/points'
-					element={<PointsPage />}
-				></Route>
+				<Route path='/points' element={<PointsPage />}></Route>
 				<Route path='/home' element={<HomePage />}></Route>
 			</Routes>
 		</BrowserRouter>

@@ -11,7 +11,7 @@ const GamesList = ({ games }) => {
 			JSON.stringify(users_data[0].attended_games)
 		);
 	}
-	
+
 	const attendedGames = JSON.parse(localStorage.getItem("games_attended"));
 
 	const [filteredGames, setFilteredGames] = useState(games);
@@ -21,62 +21,68 @@ const GamesList = ({ games }) => {
 	const [timeFilter, setTimeFilter] = useState("Time");
 
 	useEffect(() => {
-        handleCombinedFilter();
-    }, [sportFilter, genderFilter, timeFilter]);
+		handleCombinedFilter();
+	}, [sportFilter, genderFilter, timeFilter]);
 
-    const handleCombinedFilter = () => {
-        let filtered = [...games];
+	const handleCombinedFilter = () => {
+		let filtered = [...games];
 
-        if (sportFilter !== "Sport" && sportFilter !== "Show All") {
-            filtered = filtered.filter(game => 
-                game.sport.includes(sportFilter === "Hockey" ? "Field Hockey" : sportFilter));
-        }
+		if (sportFilter !== "Sport" && sportFilter !== "Show All") {
+			filtered = filtered.filter((game) =>
+				game.sport.includes(
+					sportFilter === "Hockey" ? "Field Hockey" : sportFilter
+				)
+			);
+		}
 
-        if (genderFilter !== "Gender" && genderFilter !== "Show All") {
-            filtered = filtered.filter(game => game.sport.includes(genderFilter));
-        }
+		if (genderFilter !== "Gender" && genderFilter !== "Show All") {
+			filtered = filtered.filter((game) => game.sport.includes(genderFilter));
+		}
 
-        const currentDate = new Date();
-        currentDate.setHours(0, 0, 0, 0);
+		const currentDate = new Date();
+		currentDate.setHours(0, 0, 0, 0);
 
-        if (timeFilter !== "Time" && timeFilter !== "Show All") {
-            if (timeFilter === "Today") {
-                filtered = filtered.filter(game => {
-                    const gameDate = new Date(game.date);
-                    gameDate.setHours(0, 0, 0, 0);
-                    return gameDate.getTime() === currentDate.getTime();
-                });
-            } else if (timeFilter === "Future") {
-                filtered = filtered.filter(game => new Date(game.date).getTime() > currentDate.getTime());
-            } else if (timeFilter === "Past") {
-                filtered = filtered.filter(game => new Date(game.date).getTime() < currentDate.getTime());
-            }
-        }
+		if (timeFilter !== "Time" && timeFilter !== "Show All") {
+			if (timeFilter === "Today") {
+				filtered = filtered.filter((game) => {
+					const gameDate = new Date(game.date);
+					gameDate.setHours(0, 0, 0, 0);
+					return gameDate.getTime() === currentDate.getTime();
+				});
+			} else if (timeFilter === "Future") {
+				filtered = filtered.filter(
+					(game) => new Date(game.date).getTime() > currentDate.getTime()
+				);
+			} else if (timeFilter === "Past") {
+				filtered = filtered.filter(
+					(game) => new Date(game.date).getTime() < currentDate.getTime()
+				);
+			}
+		}
 
-        setFilteredGames(filtered);
-    };
+		setFilteredGames(filtered);
+	};
 
-    const handleSportFilterChange = (sport) => {
-        if (sport === "Show All") {
-            setSportFilter("Sport");
-        } else {
-            setSportFilter(sport === "Field Hockey" ? "Hockey" : sport);
-        }
-    };
+	const handleSportFilterChange = (sport) => {
+		if (sport === "Show All") {
+			setSportFilter("Sport");
+		} else {
+			setSportFilter(sport === "Field Hockey" ? "Hockey" : sport);
+		}
+	};
 
-    const handleGenderFilterChange = (gender) => {
-        if (gender === "Show All") {
-            setGenderFilter("Gender");
-        } else {
-            setGenderFilter(gender);
-        }
-    };
+	const handleGenderFilterChange = (gender) => {
+		if (gender === "Show All") {
+			setGenderFilter("Gender");
+		} else {
+			setGenderFilter(gender);
+		}
+	};
 
-    const handleTimeFilterChange = (filterType) => {
-        setTimeFilter(filterType);
-    };
-	
-	
+	const handleTimeFilterChange = (filterType) => {
+		setTimeFilter(filterType);
+	};
+
 	return (
 		<>
 			<div className='dropdown-wrapper'>
@@ -89,13 +95,17 @@ const GamesList = ({ games }) => {
 						<Dropdown.Item onClick={() => handleSportFilterChange("Football")}>
 							Football
 						</Dropdown.Item>
-						<Dropdown.Item onClick={() => handleSportFilterChange("Volleyball")}>
+						<Dropdown.Item
+							onClick={() => handleSportFilterChange("Volleyball")}
+						>
 							Volleyball
 						</Dropdown.Item>
 						<Dropdown.Item onClick={() => handleSportFilterChange("Soccer")}>
 							Soccer
 						</Dropdown.Item>
-						<Dropdown.Item onClick={() => handleSportFilterChange("Field Hockey")}>
+						<Dropdown.Item
+							onClick={() => handleSportFilterChange("Field Hockey")}
+						>
 							Hockey
 						</Dropdown.Item>
 					</Dropdown.Menu>

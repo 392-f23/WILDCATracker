@@ -4,13 +4,13 @@ import { auth, database } from "../utilities/firebase";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { LoginContext } from "../utilities/StateProvider";
 import { loginActions } from "../utilities/reducer";
-import { ref, child, get, set, push } from "firebase/database";
+import { ref, child, get, set } from "firebase/database";
 
 const Login = () => {
-	const [loginState, setLoginState] = useContext(LoginContext);
+	const [, setLoginState] = useContext(LoginContext);
 
 	const handleUserLogin = (user) => {
-		console.log(user);
+		// console.log(user);
 		const uid = user.uid;
 		const usersRef = child(ref(database), "users");
 		get(usersRef)
@@ -18,12 +18,15 @@ const Login = () => {
 				if (snapshot.exists() && snapshot.hasChild(uid)) {
 					console.log(`User with user_id ${uid} exists in /users.`);
 				} else {
+					// new user login
 					console.log(`User with user_id ${uid} does not exist in /users.`);
 
 					const userData = {
 						email: user.email,
 						displayName: user.displayName,
+						photoURL: user.photoURL,
 						attendedGames: [],
+						points: 0,
 					};
 
 					const newUserRef = ref(database, `users/${uid}`);

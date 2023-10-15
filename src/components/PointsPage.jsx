@@ -22,12 +22,16 @@ const PointsPage = () => {
 		);
 	}
 
-	const attendedGameIds = JSON.parse(localStorage.getItem("games_attended")).filter((game) => game != null);
-	const attendedGames = games_data.filter((game) =>
-		attendedGameIds.includes(game.id) && new Date() >= new Date(game.date)
+	const attendedGameIds = JSON.parse(
+		localStorage.getItem("games_attended")
+	).filter((game) => game != null);
+	const attendedGames = games_data.filter(
+		(game) =>
+			attendedGameIds.includes(game.id) && new Date() >= new Date(game.date)
 	);
-	const futureGames = games_data.filter((game) =>
-		attendedGameIds.includes(game.id) && new Date() < new Date(game.date)
+	const futureGames = games_data.filter(
+		(game) =>
+			attendedGameIds.includes(game.id) && new Date() < new Date(game.date)
 	);
 	const points = attendedGames.reduce((sum, game) => sum + game.points, 0);
 	const [filteredGames, setFilteredGames] = useState(attendedGames);
@@ -80,7 +84,10 @@ const PointsPage = () => {
 				className='button-group'
 				style={{ display: "flex", alignItems: "center" }}
 			>
-				{[{ label: "Past", val: true }, { label: "Future", val: false }].map((option) => (
+				{[
+					{ label: "Past", val: true },
+					{ label: "Future", val: false },
+				].map((option) => (
 					<div key={option.label} style={{ margin: "auto" }}>
 						<input
 							type='radio'
@@ -105,7 +112,11 @@ const PointsPage = () => {
 					</div>
 				))}
 			</div>
-			{past ? <AttendedGamesList games={filteredGames} /> : <AttendedGamesList games={futureGames} />}
+			{past ? (
+				<AttendedGamesList games={filteredGames} />
+			) : (
+				<AttendedGamesList games={futureGames} />
+			)}
 		</div>
 	);
 };

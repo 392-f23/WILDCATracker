@@ -26,22 +26,22 @@ const GameCard = ({ game, gameAdded }) => {
 	const [buttonStyle, setButtonStyle] = useState(
 		gameAdded ? "selected" : "unselected"
 	);
-		
+
 	const handleButtonClick = () => {
-		if (buttonText === 'Points ' + game.points) {
-			setButtonText('Points Added');
-			setButtonStyle('selected');
+		if (buttonText === "Points " + game.points) {
+			setButtonText("Points Added");
+			setButtonStyle("selected");
 			addGame(game.id);
 		} else {
-			setButtonText('Points ' + game.points);
-			setButtonStyle('unselected');
+			setButtonText("Points " + game.points);
+			setButtonStyle("unselected");
 			removeGame(game.id);
 		}
 		// setAttended((prev) => !prev);
 		// setButtonText(attended ? "Points Added" : "Points " + game.points);
 		// setButtonStyle(attended ? "selected" : "unselected");
 	};
-	
+
 	return (
 		<div className='card m-2 p-2'>
 			<div
