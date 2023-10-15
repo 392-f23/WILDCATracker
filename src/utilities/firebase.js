@@ -24,7 +24,7 @@ const firebaseConfig = {
 	storageBucket: "wildcatracker.appspot.com",
 	messagingSenderId: "748740578016",
 	appId: "1:748740578016:web:0b406fbe2576528ff81e85",
-	measurementId: "G-Y4FZZ4GRKH"
+	measurementId: "G-Y4FZZ4GRKH",
 };
 
 // Initialize Firebase

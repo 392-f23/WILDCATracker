@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import './HomePage.css';
-import mbbGamesData from '../utilities/mbbGames.json';
-import NavBar from './NavBar';
-
+import React, { useState, useEffect } from "react";
+import "./HomePage.css";
+import mbbGamesData from "../utilities/mbbGames.json";
+import NavBar from "./NavBar";
 
 const HomePage = () => {
 	const [showAllGames, setShowAllGames] = useState(false);
