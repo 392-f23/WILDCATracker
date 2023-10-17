@@ -153,9 +153,9 @@ const GamesList = ({ games }) => {
 			<div className='games-list'>
 				{Object.entries(filteredGames).map(([id, game]) =>
 					attendedGames.includes(game.id) ? (
-						<GameCard key={id} game={game} gameAdded={true} />
+						<GameCard key={id} id={id} game={game} gameAdded={true} />
 					) : (
-						<GameCard key={id} game={game} gameAdded={false} />
+						<GameCard key={id} id={id} game={game} gameAdded={false} />
 					)
 				)}
 			</div>
