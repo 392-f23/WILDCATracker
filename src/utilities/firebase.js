@@ -6,13 +6,11 @@
 // const { getDatabase } = require("firebase/database");
 // const { initializeApp } = require("firebase/app");
 
-import { getDatabase, onValue, ref } from "firebase/database";
 import { initializeApp } from "firebase/app";
 import { useCallback, useEffect, useState } from 'react';
 import { getDatabase, onValue, ref, update} from 'firebase/database';
 //import { getAnalytics } from "firebase/analytics";
 import { getAuth, onAuthStateChanged, signOut} from 'firebase/auth';
-import { useState, useEffect } from "react";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -59,34 +57,36 @@ export const useDbData = (path) => {
 		setError(error);
 	  })
 	), [ path ]);
-  
+	  
+	 // console.log("data:", data, "error:", error);
+
 	return [ data, error ];
-  };
-  
-  const makeResult = (error) => {
+};
+
+const makeResult = (error) => {
 	const timestamp = Date.now();
 	const message = error?.message || `Updated: ${new Date(timestamp).toLocaleString()}`;
 	return { timestamp, error, message };
-  };
+};
   
-  export const useDbUpdate = (path) => {
+export const useDbUpdate = (path) => {
 	const [result, setResult] = useState();
 	const updateData = useCallback((value) => {
-	  update(ref(database, path), value)
-	  .then(() => setResult(makeResult()))
-	  .catch((error) => setResult(makeResult(error)))
+		update(ref(database, path), value)
+		.then(() => setResult(makeResult()))
+		.catch((error) => setResult(makeResult(error)))
 	}, [database, path]);
-  
+
 	return [updateData, result];
-  };
-  
-  export const useAuthState = () => {
-    const [user, setUser] = useState();
-    
-    useEffect(() => (
-      onAuthStateChanged(getAuth(app), setUser)
-    ), []);
-  
-    console.log(user);
-    return [user];
-  };
+};
+
+export const useAuthState = () => {
+	const [user, setUser] = useState();
+
+	useEffect(() => (
+		onAuthStateChanged(getAuth(app), setUser)
+	), []);
+
+	console.log(user);
+	return [user];
+};

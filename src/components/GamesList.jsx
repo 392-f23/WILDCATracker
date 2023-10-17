@@ -5,14 +5,16 @@ import users_data from "../utilities/users_data";
 import "./GamesList.css";
 
 const GamesList = ({ games }) => {
-	if (!localStorage.getItem("games_attended")) {
-		localStorage.setItem(
-			"games_attended",
-			JSON.stringify(users_data[0].attended_games)
-		);
-	}
+	// if (!localStorage.getItem("games_attended")) {
+	// 	localStorage.setItem(
+	// 		"games_attended",
+	// 		JSON.stringify(users_data[0].attended_games)
+	// 	);
+	// }
+	
+	console.log(games);
 
-	const attendedGames = JSON.parse(localStorage.getItem("games_attended"));
+	//const attendedGames = JSON.parse(localStorage.getItem("games_attended"));
 
 	const [filteredGames, setFilteredGames] = useState(games);
 
@@ -150,14 +152,18 @@ const GamesList = ({ games }) => {
 				</Dropdown>
 			</div>
 
-			<div className='games-list'>
-				{Object.entries(filteredGames).map(([id, game]) =>
+			{/* <div className='games-list'>
+				{Object.entries(games).map(([id, game]) =>
 					attendedGames.includes(game.id) ? (
 						<GameCard key={id} id={id} game={game} gameAdded={true} />
 					) : (
 						<GameCard key={id} id={id} game={game} gameAdded={false} />
 					)
 				)}
+			</div> */}
+
+			<div className='games-list'>
+				{Object.entries(games).map(([id, game]) => <GameCard key={id} id={id} game={game} gameAdded={false} />)}
 			</div>
 		</>
 	);

@@ -26,6 +26,7 @@ const GameCard = ({ id, game, gameAdded }) => {
 	if (profileLoading) return <h1>Loading user profile</h1>;
 	if (!profile) return <h1>No profile data</h1>;
 
+	
 	//const [attended, setAttended] = useState(gameAdded);
 	const [buttonText, setButtonText] = useState(
 		gameAdded ? "Points Added " : "Points " + game.points
@@ -48,7 +49,7 @@ const GameCard = ({ id, game, gameAdded }) => {
 		// setButtonText(attended ? "Points Added" : "Points " + game.points);
 		// setButtonStyle(attended ? "selected" : "unselected");
 	};
-
+	
 	const url = "/games/" + id + "/edit";
 
 	return (
