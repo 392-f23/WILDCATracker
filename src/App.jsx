@@ -16,7 +16,6 @@ import {
 	faBaseball,
 	faMedal,
 	faDumbbell,
-	faBaseballBatBall,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
 	faVolleyball,
@@ -25,7 +24,8 @@ library.add(
 	faBasketball,
 	faFootball,
 	faBaseball,
-	faMedal
+	faMedal,
+	faDumbbell,
 );
 import Login from "./components/Login";
 import { LoginContext } from "./utilities/StateProvider";
@@ -33,8 +33,8 @@ import { LoginContext } from "./utilities/StateProvider";
 const Main = () => {	
 	let [loginState] = useContext(LoginContext);
 
-	if (!loginState.user && localStorage.getItem("user"))
-		loginState.user = localStorage.getItem("user");
+	//if (!loginState.user && localStorage.getItem("user"))
+	//  loginState.user = localStorage.getItem("user");
 
 	return loginState.user ? (
 		<div style={{ background: "whitesmoke" }}>

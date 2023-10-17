@@ -8,8 +8,10 @@
 
 import { getDatabase, onValue, ref } from "firebase/database";
 import { initializeApp } from "firebase/app";
+import { useCallback, useEffect, useState } from 'react';
+import { getDatabase, onValue, ref, update} from 'firebase/database';
 //import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut} from 'firebase/auth';
 import { useState, useEffect } from "react";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -25,7 +27,7 @@ const firebaseConfig = {
 	storageBucket: "wildcatracker.appspot.com",
 	messagingSenderId: "748740578016",
 	appId: "1:748740578016:web:0b406fbe2576528ff81e85",
-	measurementId: "G-Y4FZZ4GRKH"
+	measurementId: "G-Y4FZZ4GRKH",
 };
 
 // Initialize Firebase
@@ -46,20 +48,45 @@ export const database = getDatabase(app);
 // uncomment this when using the scrapper
 //module.exports.database = getDatabase(app);
 
-
-// Equivalent to Quick React
-// will pull all the data in the events/ collection
-export const useDbData = () => {
+export const useDbData = (path) => {
 	const [data, setData] = useState();
 	const [error, setError] = useState(null);
-
+  
 	useEffect(() => (
-		onValue(ref(database, "events/"), (snapshot) => {
-		setData( snapshot.val() );
-		}, (error) => {
+	  onValue(ref(database, path), (snapshot) => {
+	   setData( snapshot.val() );
+	  }, (error) => {
 		setError(error);
-		})
-	), [ database ]);
-	
+	  })
+	), [ path ]);
+  
 	return [ data, error ];
-};
+  };
+  
+  const makeResult = (error) => {
+	const timestamp = Date.now();
+	const message = error?.message || `Updated: ${new Date(timestamp).toLocaleString()}`;
+	return { timestamp, error, message };
+  };
+  
+  export const useDbUpdate = (path) => {
+	const [result, setResult] = useState();
+	const updateData = useCallback((value) => {
+	  update(ref(database, path), value)
+	  .then(() => setResult(makeResult()))
+	  .catch((error) => setResult(makeResult(error)))
+	}, [database, path]);
+  
+	return [updateData, result];
+  };
+  
+  export const useAuthState = () => {
+    const [user, setUser] = useState();
+    
+    useEffect(() => (
+      onAuthStateChanged(getAuth(app), setUser)
+    ), []);
+  
+    console.log(user);
+    return [user];
+  };

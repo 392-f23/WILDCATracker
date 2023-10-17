@@ -6,6 +6,12 @@ import PointsPage from "./PointsPage";
 import HomePage from "./HomePage";
 import games_data from "../utilities/data.js";
 import users_data from "../utilities/users_data";
+import GameEditor from "./GameEditor";
+
+const GameFormForUrl = ({games}) => {
+    const { id } = useParams();
+    return <div className = "container"><GameEditor id={id} game={games[id]} /></div>;
+  };
 
 const MyRouter = () => {
 	return (
@@ -13,10 +19,10 @@ const MyRouter = () => {
 			<Routes>
 				<Route path='/' element={<GamesPage games={games_data} />}></Route>
 				<Route path='/games' element={<GamesPage games={games_data} />}></Route>
-				<Route
-					path='/points'
-					element={<PointsPage />}
-				></Route>
+				<Route path="/games/:id/edit" element={
+         			<GameFormForUrl games={games_data} />
+				}/>
+				<Route path='/points' element={<PointsPage />}></Route>
 				<Route path='/home' element={<HomePage />}></Route>
 			</Routes>
 		</BrowserRouter>
