@@ -25,7 +25,7 @@ const HomePage = () => {
 		.then((snapshot) => {
 			if (snapshot.exists()) {
 				const userData = snapshot.val();
-				console.log(`User data at users/${uid}:`, userData);
+				// console.log(`User data at users/${uid}:`, userData);
 				setDisplayName(userData.displayName);
 				setEmail(userData.email);
 				setImageURL(userData.photoURL);

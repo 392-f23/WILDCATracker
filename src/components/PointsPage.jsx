@@ -50,10 +50,7 @@ const PointsPage = () => {
 		<div className='content'>
 			<NavBar></NavBar>
 			<h1 style={{ textAlign: "center" }}>{points} Points</h1>
-			<div
-				className='button-group'
-				style={{ display: "flex", alignItems: "center" }}
-			>
+			<div className='button-group'>
 				{historyWindows.map((option) => (
 					<div key={option} style={{ margin: "auto" }}>
 						<input
@@ -80,10 +77,8 @@ const PointsPage = () => {
 				))}
 			</div>
 			<AttendedGamesChart games={attendedGames} window={window} />
-			<div
-				className='button-group'
-				style={{ display: "flex", alignItems: "center" }}
-			>
+			<hr className='points-page-seperator'></hr>
+			<div className='button-group'>
 				{[
 					{ label: "Past", val: true },
 					{ label: "Future", val: false },

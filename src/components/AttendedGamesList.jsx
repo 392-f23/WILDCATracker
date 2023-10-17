@@ -1,5 +1,5 @@
 import AttendedGameCard from "./AttendedGameCard";
-import "./PointsPage.css";
+import "./AttendedGameList.css";
 
 const AttendedGamesList = ({ games }) => {
 	return (

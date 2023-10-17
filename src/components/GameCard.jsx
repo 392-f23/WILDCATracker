@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import users_data from "../utilities/users_data";
 import "./GameCard.css";
-import { Link } from 'react-router-dom';
-import { useProfile } from '../utilities/profile';
+import { Link } from "react-router-dom";
+import { useProfile } from "../utilities/profile";
 
 const addGame = (gameId) => {
 	let attendedGames = JSON.parse(localStorage.getItem("games_attended"));
@@ -21,11 +21,10 @@ const removeGame = (gameId) => {
 };
 
 const GameCard = ({ id, game, gameAdded }) => {
-	
 	const [profile, profileLoading, profileError] = useProfile();
 	if (profileError) return <h1>Error loading profile: {`${profileError}`}</h1>;
-    if (profileLoading) return <h1>Loading user profile</h1>;
-    if (!profile) return <h1>No profile data</h1>;
+	if (profileLoading) return <h1>Loading user profile</h1>;
+	if (!profile) return <h1>No profile data</h1>;
 
 	//const [attended, setAttended] = useState(gameAdded);
 	const [buttonText, setButtonText] = useState(
@@ -50,7 +49,7 @@ const GameCard = ({ id, game, gameAdded }) => {
 		// setButtonStyle(attended ? "selected" : "unselected");
 	};
 
-	const url = '/games/' + id + '/edit';
+	const url = "/games/" + id + "/edit";
 
 	return (
 		<div className='card m-2 p-2'>
@@ -64,16 +63,20 @@ const GameCard = ({ id, game, gameAdded }) => {
 				}}
 			>
 				<div>
-					<h5 className='card-title'>{game.sport}
-					{
-						profile?.isAdmin &&
-						<Link to={url} >
-							<button style ={{background:'transparent', border:'transparent'}} >
-							  <i className={'bi-pencil-square'} style = {{color: 'grey', marginleft: '0px'}}/>
-							</button>
-						</Link>
-					}
-					</h5>
+					<div className='card-title'>
+						{game.sport}
+						{profile?.isAdmin && (
+							<div className='card-edit-button'>
+								<Link to={url}>
+									<button
+										style={{ background: "transparent", border: "transparent" }}
+									>
+										<i className='bi-pencil-square' id='edit-button-icon' />
+									</button>
+								</Link>
+							</div>
+						)}
+					</div>
 					<h6 className='card-subtitle mb-2 text-muted'>
 						Northwestern vs {game.opponent}
 					</h6>
@@ -83,7 +86,7 @@ const GameCard = ({ id, game, gameAdded }) => {
 				</div>
 				<div>
 					<hr></hr>
-					<h6 className='card-subtitle mb-2 text-muted'>{game.location}</h6>
+					<div className='card-location mb-2 text-muted'>{game.location}</div>
 					<button
 						className={`game-card-button-${buttonStyle}`}
 						onClick={handleButtonClick}
