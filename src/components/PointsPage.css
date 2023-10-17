@@ -28,14 +28,6 @@
 	align-items: baseline;
 }
 
-.attended-game-card {
-	margin-top: 20px;
-	background-color: white;
-	margin-inline: 10px;
-	padding: 5px;
-	border-radius: 10px;
-}
-
 .custom-list {
 	margin-inline: 10px;
 	border-bottom: 3px solid rgb(78, 42, 132);
@@ -61,4 +53,12 @@
 	border-radius: 5px;
 	background-color: rgb(198, 173, 236);
 	cursor: pointer;
+}
+
+.button-group {
+	display: flex;
+	align-items: center;
+}
+.points-page-seperator {
+	border: 2px solid rgb(98, 48, 174);
 }
