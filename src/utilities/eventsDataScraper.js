@@ -37,7 +37,7 @@ const scrape = async () => {
 
                 // Check if modal appears
                 try{
-                    await page.waitForSelector('div.s-game-card', { timeout: 15000 });  // wait up to 5 second
+                    await page.waitForSelector('div.s-game-card', { timeout: 15000 });  // wait up to 15 seconds
                 } catch (error) {
                     console.log('\x1b[93m%s\x1b[0m', `Modal window did not appear within 15 seconds!`);
                 }

@@ -6,10 +6,11 @@
 // const { getDatabase } = require("firebase/database");
 // const { initializeApp } = require("firebase/app");
 
-import { getDatabase } from "firebase/database";
+import { getDatabase, onValue, ref } from "firebase/database";
 import { initializeApp } from "firebase/app";
 //import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+import { useState, useEffect } from "react";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -44,3 +45,21 @@ export const database = getDatabase(app);
 // Nodejs does not natively support import export syntax,
 // uncomment this when using the scrapper
 //module.exports.database = getDatabase(app);
+
+
+// Equivalent to Quick React
+// will pull all the data in the events/ collection
+export const useDbData = () => {
+	const [data, setData] = useState();
+	const [error, setError] = useState(null);
+
+	useEffect(() => (
+		onValue(ref(database, "events/"), (snapshot) => {
+		setData( snapshot.val() );
+		}, (error) => {
+		setError(error);
+		})
+	), [ database ]);
+	
+	return [ data, error ];
+};

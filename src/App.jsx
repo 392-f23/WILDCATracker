@@ -30,7 +30,7 @@ library.add(
 import Login from "./components/Login";
 import { LoginContext } from "./utilities/StateProvider";
 
-const Main = () => {
+const Main = () => {	
 	let [loginState] = useContext(LoginContext);
 
 	if (!loginState.user && localStorage.getItem("user"))
