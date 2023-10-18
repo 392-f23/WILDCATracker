@@ -25,6 +25,7 @@ const MyRouter = () => {
 	// 		data = snapshot;}
 	// )
 	// console.log(data);
+	const [data, error] = useDbData("/events/");
 
 	return (
 		<BrowserRouter>
@@ -32,7 +33,7 @@ const MyRouter = () => {
 				<Route path='/' element={<GamesPage />}></Route>
 				<Route path='/games' element={<GamesPage />}></Route>
 				<Route path="/games/:id/edit" element={
-         			<GameFormForUrl games={games_data} />
+         			<GameFormForUrl games={data} />
 				}/>
 				<Route path='/points' element={<PointsPage />}></Route>
 				<Route path='/home' element={<HomePage />}></Route>

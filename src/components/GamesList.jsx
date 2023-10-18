@@ -1,87 +1,116 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Dropdown } from "react-bootstrap";
 import GameCard from "./GameCard";
-import users_data from "../utilities/users_data";
 import "./GamesList.css";
 import { useDbData } from "../utilities/firebase";
 import { LoginContext } from "../utilities/StateProvider";
+import { useProfile } from "../utilities/profile";
 
 const GamesList = ({ games }) => {
-	const [userState] = useContext(LoginContext);
-	const [user, error] = useDbData(`/users/${userState.user.uid}`)
-	const attendedGames = !!user ? user?.['games-attended'] : [];
+	const [profile, profileLoading, profileError] = useProfile();
+	const [user, error] = useDbData(`/users/${profile?.user?.uid}`);
+	const attendedGames = !!user ? user?.["games-attended"] : [];
 
 	const [filteredGames, setFilteredGames] = useState(games);
 
 	const [sportFilter, setSportFilter] = useState("Sport");
 	const [genderFilter, setGenderFilter] = useState("Gender");
 	const [timeFilter, setTimeFilter] = useState("Time");
-	
-	// useEffect(() => {
-	// 	handleCombinedFilter();
-	// }, [sportFilter, genderFilter, timeFilter]);
 
-	// const handleCombinedFilter = () => {
-	// 	let filtered = [...games];
+	const sportToAbbrev = {
+		"Soccer": ["WSOC", "MSOC"],
+		"Football": ["FB"],
+		"Hockey": ["FHOCKEY"],
+		"Volleyball": ["WVB"],
+		"Swimming": ["MSWIM"],
+		"Basketball": ["MBB", "WBB"]
+	};
 
-	// 	if (sportFilter !== "Sport" && sportFilter !== "Show All") {
-	// 		filtered = filtered.filter((game) =>
-	// 			game.sport.includes(
-	// 				sportFilter === "Hockey" ? "Field Hockey" : sportFilter
-	// 			)
-	// 		);
-	// 	}
+	useEffect(() => {
+		handleCombinedFilter();
+	}, [sportFilter, genderFilter, timeFilter]);
 
-	// 	if (genderFilter !== "Gender" && genderFilter !== "Show All") {
-	// 		filtered = filtered.filter((game) => game.sport.includes(genderFilter));
-	// 	}
+	const handleCombinedFilter = () => {
+		let filtered = { ...games };
 
-	// 	const currentDate = new Date();
-	// 	currentDate.setHours(0, 0, 0, 0);
+		if (sportFilter !== "Sport" && sportFilter !== "Show All") {
+			const sportAbbreviations = sportToAbbrev[sportFilter];
 
-	// 	if (timeFilter !== "Time" && timeFilter !== "Show All") {
-	// 		if (timeFilter === "Today") {
-	// 			filtered = filtered.filter((game) => {
-	// 				const gameDate = new Date(game.date);
-	// 				gameDate.setHours(0, 0, 0, 0);
-	// 				return gameDate.getTime() === currentDate.getTime();
-	// 			});
-	// 		} else if (timeFilter === "Future") {
-	// 			filtered = filtered.filter(
-	// 				(game) => new Date(game.date).getTime() > currentDate.getTime()
-	// 			);
-	// 		} else if (timeFilter === "Past") {
-	// 			filtered = filtered.filter(
-	// 				(game) => new Date(game.date).getTime() < currentDate.getTime()
-	// 			);
-	// 		}
-	// 	}
+			if (sportAbbreviations) {
+				filtered = Object.fromEntries(
+					Object.entries(filtered).filter(([key, game]) => {
+						return sportAbbreviations.some(abbrev => game.eventKey.includes(abbrev));
+					})
+				);
+			}
+		}
 
-	// 	setFilteredGames(filtered);
-	// };
+		const newFiltered = Object.fromEntries(
+			Object.entries(filtered).filter(([key, game]) => {
+				if (genderFilter === "Gender") return true;
+				const matches = game.eventKey && game.eventKey[0] === genderFilter[0];
+				if (!matches) {
+					console.log("Filtered out game:", game);
+				}
+				return matches;
+			})
+		);
 
-	// const handleSportFilterChange = (sport) => {
-	// 	if (sport === "Show All") {
-	// 		setSportFilter("Sport");
-	// 	} else {
-	// 		setSportFilter(sport === "Field Hockey" ? "Hockey" : sport);
-	// 	}
-	// };
+		// console.log("Filtered games:", newFiltered);
+		filtered = newFiltered;
 
-	// const handleGenderFilterChange = (gender) => {
-	// 	if (gender === "Show All") {
-	// 		setGenderFilter("Gender");
-	// 	} else {
-	// 		setGenderFilter(gender);
-	// 	}
-	// };
+		const currentDate = new Date();
+		currentDate.setHours(0, 0, 0, 0);
 
-	// const handleTimeFilterChange = (filterType) => {
-	// 	setTimeFilter(filterType);
-	// };
+		if (timeFilter !== "Time" && timeFilter !== "Show All") {
+			if (timeFilter === "Today") {
+				filtered = Object.fromEntries(
+					Object.entries(filtered).filter(([key, game]) => {
+						const gameDate = new Date(game.date);
+						gameDate.setHours(0, 0, 0, 0);
+						return gameDate.getTime() === currentDate.getTime();
+					})
+				);
+			} else if (timeFilter === "Future") {
+				filtered = Object.fromEntries(
+					Object.entries(filtered).filter(([key, game]) =>
+						new Date(game.date).getTime() > currentDate.getTime()
+					)
+				);
+			} else if (timeFilter === "Past") {
+				filtered = Object.fromEntries(
+					Object.entries(filtered).filter(([key, game]) =>
+						new Date(game.date).getTime() < currentDate.getTime()
+					)
+				);
+			}
+		}
 
-	return (
-		user ? 
+
+		setFilteredGames(filtered);
+	};
+
+	const handleSportFilterChange = (sport) => {
+		if (sport === "Show All") {
+			setSportFilter("Sport");
+		} else {
+			setSportFilter(sport === "Field Hockey" ? "Hockey" : sport);
+		}
+	};
+
+	const handleGenderFilterChange = (gender) => {
+		if (gender === "Show All") {
+			setGenderFilter("Gender");
+		} else {
+			setGenderFilter(gender);
+		}
+	};
+
+	const handleTimeFilterChange = (filterType) => {
+		setTimeFilter(filterType);
+	};
+
+	return user ? (
 		<>
 			<div className='dropdown-wrapper'>
 				<Dropdown>
@@ -104,7 +133,12 @@ const GamesList = ({ games }) => {
 						<Dropdown.Item
 							onClick={() => handleSportFilterChange("Field Hockey")}
 						>
-							Hockey
+							Field Hockey
+						</Dropdown.Item>
+						<Dropdown.Item
+							onClick={() => handleSportFilterChange("Basketball")}
+						>
+							Basketball
 						</Dropdown.Item>
 					</Dropdown.Menu>
 					<Dropdown.Toggle id='filter-dropdown'>{sportFilter}</Dropdown.Toggle>
@@ -149,20 +183,19 @@ const GamesList = ({ games }) => {
 			</div>
 
 			<div className='games-list'>
-				{Object.entries(games).map(([id, game]) =>
+				{Object.entries(filteredGames).map(([id, game]) =>
 					attendedGames?.includes(id) ? (
-						<GameCard key={id} id={id} game={game} gameAdded={true} user={user}/>
+						<GameCard key={id} id={id} game={game} gameAdded={true} user={user} />
 					) : (
-						<GameCard key={id} id={id} game={game} gameAdded={false} user={user}/>
+						<GameCard key={id} id={id} game={game} gameAdded={false} user={user} />
 					)
 				)}
 			</div>
 			{/* <div className='games-list'>
 				{games && Object.entries(games).map(([id, game]) => <GameCard key={id} id={id} game={game} />)}
 			</div> */}
-			
 		</>
-		:
+	) : (
 		<p>Loading..</p>
 	);
 };

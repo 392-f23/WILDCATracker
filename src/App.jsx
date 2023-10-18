@@ -30,11 +30,11 @@ library.add(
 import Login from "./components/Login";
 import { LoginContext } from "./utilities/StateProvider";
 
-const Main = () => {	
+const Main = () => {
 	const [loginState] = useContext(LoginContext);
 
-	//if (!loginState.user && localStorage.getItem("user"))
-	//  loginState.user = localStorage.getItem("user");
+	if (!loginState.user && localStorage.getItem("user"))
+		loginState.user = localStorage.getItem("user");
 
 	return loginState.user ? (
 		<div style={{ background: "whitesmoke" }}>

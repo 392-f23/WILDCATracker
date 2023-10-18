@@ -6,15 +6,18 @@ import { useDbData } from "../utilities/firebase";
 const GamesPage = () => {
 	const [data, error] = useDbData("/events/");
 
-	return (!(!!error) ? ( !(!!data) ?
-		<p> loading </p> :
-		<div className='content'>
-			<NavBar />
-			<GamesList games={data} />
-		</div>)  :
+	return !!!error ? (
+		!!!data ? (
+			<p> loading </p>
+		) : (
+			<div className='content'>
+				<NavBar />
+				<GamesList games={data} />
+			</div>
+		)
+	) : (
 		<p>{error}</p>
 	);
-
 };
 
 export default GamesPage;

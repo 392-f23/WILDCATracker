@@ -23,8 +23,8 @@
 
 .card-edit-button {
 	position: absolute;
-	left: 82%;
-	top: -4%;
+	right: -18px;
+	top: -12px;
 }
 
 .card-location {
@@ -36,4 +36,10 @@
 #edit-button-icon {
 	width: 10px;
 	color: grey;
+}
+
+.university-logo {
+	position: absolute;
+	right: 10px;
+	top: 60px;
 }
