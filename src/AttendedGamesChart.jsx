@@ -23,19 +23,22 @@ const generateEquallySpreadDates = (startDate, endDate, n) => {
 };
 
 const getFirstDate = (games, window) => {
-	window == "Total"
-		? new Date(
+	if (games.length > 0) {
+		window == "Total"
+			? new Date(
 				games.reduce((a, b) =>
 					new Date(a.date) < new Date(b.date) ? a : b
 				).date
-		  )
-		: historyLookback[window];
-	if (window === "Total") {
-		const date = new Date(
-			games.reduce((a, b) => (new Date(a.date) < new Date(b.date) ? a : b)).date
-		);
-		return new Date(date.setDate(date.getDate() - 1));
+			)
+			: historyLookback[window];
+		if (window === "Total") {
+			const date = new Date(
+				games.reduce((a, b) => (new Date(a.date) < new Date(b.date) ? a : b)).date
+			);
+			return new Date(date.setDate(date.getDate() - 1));
+		}
 	}
+
 	return historyLookback[window];
 };
 
@@ -55,17 +58,16 @@ const AttendedGamesChart = ({ games, window }) => {
 	const points = [
 		games
 			.filter((game) => new Date(game.date) <= firstDate)
-			.reduce((sum, game) => sum + game.points, 0),
+			.reduce((sum, game) => sum + game.point, 0),
 	];
 	var lastPoints = points[0];
 	for (let i = 1; i < dateLabels.length; i++) {
-		const newPoints = games
-			.filter(
-				(game) =>
-					dateLabels[i - 1] < new Date(game.date) &&
-					new Date(game.date) <= dateLabels[i]
-			)
-			.reduce((sum, game) => sum + game.points, lastPoints);
+		const filtered = games.filter(
+			(game) =>
+				dateLabels[i - 1] < new Date(game.date) &&
+				new Date(game.date) <= dateLabels[i]
+		)
+		const newPoints = filtered.length > 0 ? filtered.reduce((sum, game) => sum + game.point, lastPoints) : lastPoints;
 		lastPoints = newPoints;
 		points.push(newPoints);
 	}

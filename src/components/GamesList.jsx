@@ -4,10 +4,11 @@ import GameCard from "./GameCard";
 import "./GamesList.css";
 import { useDbData } from "../utilities/firebase";
 import { LoginContext } from "../utilities/StateProvider";
+import { useProfile } from "../utilities/profile";
 
 const GamesList = ({ games }) => {
-	const [userState] = useContext(LoginContext);
-	const [user, error] = useDbData(`/users/${userState.user.uid}`);
+	const [profile, profileLoading, profileError] = useProfile();
+	const [user, error] = useDbData(`/users/${profile?.user?.uid}`);
 	const attendedGames = !!user ? user?.["games-attended"] : [];
 
 	const [filteredGames, setFilteredGames] = useState(games);
@@ -23,20 +24,18 @@ const GamesList = ({ games }) => {
 		"Volleyball": ["WVB"],
 		"Swimming": ["MSWIM"],
 		"Basketball": ["MBB", "WBB"]
-	}
-	
-	
-	
+	};
+
 	useEffect(() => {
 		handleCombinedFilter();
 	}, [sportFilter, genderFilter, timeFilter]);
 
 	const handleCombinedFilter = () => {
-		let filtered = {...games};
+		let filtered = { ...games };
 
 		if (sportFilter !== "Sport" && sportFilter !== "Show All") {
 			const sportAbbreviations = sportToAbbrev[sportFilter];
-			
+
 			if (sportAbbreviations) {
 				filtered = Object.fromEntries(
 					Object.entries(filtered).filter(([key, game]) => {
@@ -45,10 +44,10 @@ const GamesList = ({ games }) => {
 				);
 			}
 		}
-		
+
 		const newFiltered = Object.fromEntries(
 			Object.entries(filtered).filter(([key, game]) => {
-				if (genderFilter === "Gender") return true; 
+				if (genderFilter === "Gender") return true;
 				const matches = game.eventKey && game.eventKey[0] === genderFilter[0];
 				if (!matches) {
 					console.log("Filtered out game:", game);
@@ -56,35 +55,35 @@ const GamesList = ({ games }) => {
 				return matches;
 			})
 		);
-		
-		console.log("Filtered games:", newFiltered);
+
+		// console.log("Filtered games:", newFiltered);
 		filtered = newFiltered;
 
 		const currentDate = new Date();
 		currentDate.setHours(0, 0, 0, 0);
 
 		if (timeFilter !== "Time" && timeFilter !== "Show All") {
-		    if (timeFilter === "Today") {
-		        filtered = Object.fromEntries(
-		            Object.entries(filtered).filter(([key, game]) => {
-		                const gameDate = new Date(game.date);
-		                gameDate.setHours(0, 0, 0, 0);
-		                return gameDate.getTime() === currentDate.getTime();
-		            })
-		        );
-		    } else if (timeFilter === "Future") {
-		        filtered = Object.fromEntries(
-		            Object.entries(filtered).filter(([key, game]) => 
-		                new Date(game.date).getTime() > currentDate.getTime()
-		            )
-		        );
-		    } else if (timeFilter === "Past") {
-		        filtered = Object.fromEntries(
-		            Object.entries(filtered).filter(([key, game]) => 
-		                new Date(game.date).getTime() < currentDate.getTime()
-		            )
-		        );
-		    }
+			if (timeFilter === "Today") {
+				filtered = Object.fromEntries(
+					Object.entries(filtered).filter(([key, game]) => {
+						const gameDate = new Date(game.date);
+						gameDate.setHours(0, 0, 0, 0);
+						return gameDate.getTime() === currentDate.getTime();
+					})
+				);
+			} else if (timeFilter === "Future") {
+				filtered = Object.fromEntries(
+					Object.entries(filtered).filter(([key, game]) =>
+						new Date(game.date).getTime() > currentDate.getTime()
+					)
+				);
+			} else if (timeFilter === "Past") {
+				filtered = Object.fromEntries(
+					Object.entries(filtered).filter(([key, game]) =>
+						new Date(game.date).getTime() < currentDate.getTime()
+					)
+				);
+			}
 		}
 
 
@@ -184,13 +183,13 @@ const GamesList = ({ games }) => {
 			</div>
 
 			<div className='games-list'>
-			{Object.entries(filteredGames).map(([id, game]) =>
-				attendedGames?.includes(id) ? (
-					<GameCard key={id} id={id} game={game} gameAdded={true} user={user}/>
-				) : (
-					<GameCard key={id} id={id} game={game} gameAdded={false} user={user}/>
-				)
-			)}
+				{Object.entries(filteredGames).map(([id, game]) =>
+					attendedGames?.includes(id) ? (
+						<GameCard key={id} id={id} game={game} gameAdded={true} user={user} />
+					) : (
+						<GameCard key={id} id={id} game={game} gameAdded={false} user={user} />
+					)
+				)}
 			</div>
 			{/* <div className='games-list'>
 				{games && Object.entries(games).map(([id, game]) => <GameCard key={id} id={id} game={game} />)}

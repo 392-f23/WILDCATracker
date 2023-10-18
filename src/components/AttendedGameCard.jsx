@@ -22,7 +22,7 @@ const AttendedGameCard = ({ game }) => {
 	return (
 		<li id={game.id} className='custom-list'>
 			<div className='card-subgroup'>
-				<FontAwesomeIcon icon={`${ImageMapping(game.sport)}`} />
+				{/* <FontAwesomeIcon icon={`${ImageMapping(game.sport)}`} /> */}
 				<h5
 					className='card-title'
 					style={{ marginLeft: "5px", marginRight: "5px" }}
@@ -33,7 +33,7 @@ const AttendedGameCard = ({ game }) => {
 					{get_date(new Date(game.date))}
 				</h6>
 			</div>
-			<h6 className='card-subtitle mb-1 text-muted'>+ {game.points}</h6>
+			<h6 className='card-subtitle mb-1 text-muted'>+ {game.point}</h6>
 		</li>
 	);
 };

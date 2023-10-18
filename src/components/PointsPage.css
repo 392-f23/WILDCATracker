@@ -4,7 +4,7 @@
 }
 
 .custom-button {
-	width: 150px !important;
+	width: 200px !important;
 }
 
 .custom-card {
@@ -26,6 +26,15 @@
 .card-subgroup {
 	display: flex;
 	align-items: baseline;
+}
+
+.attended-game-card {
+	margin-top: 20px;
+	background-color: white;
+	margin-inline: 10px;
+	padding: 5px;
+	padding-bottom: 20px;
+	border-radius: 10px;
 }
 
 .custom-list {
@@ -59,6 +68,14 @@
 	display: flex;
 	align-items: center;
 }
+
 .points-page-seperator {
 	border: 2px solid rgb(98, 48, 174);
+}
+
+.bottom-half {
+	border-top: 2px solid lightgray;
+	margin-top: 40px;
+	padding-top: 20px;
+
 }
