@@ -1,25 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Dropdown } from "react-bootstrap";
 import GameCard from "./GameCard";
 import users_data from "../utilities/users_data";
 import "./GamesList.css";
+import { useDbData } from "../utilities/firebase";
+import { LoginContext } from "../utilities/StateProvider";
 
 const GamesList = ({ games }) => {
-	// if (!localStorage.getItem("games_attended")) {
-	// 	localStorage.setItem(
-	// 		"games_attended",
-	// 		JSON.stringify(users_data[0].attended_games)
-	// 	);
-	// }
-	
-	//const attendedGames = JSON.parse(localStorage.getItem("games_attended"));
+	const [userState] = useContext(LoginContext);
+	const [user, error] = useDbData(`/users/${userState.user.uid}`)
+	const attendedGames = !!user ? user?.['games-attended'] : [];
 
 	const [filteredGames, setFilteredGames] = useState(games);
 
 	const [sportFilter, setSportFilter] = useState("Sport");
 	const [genderFilter, setGenderFilter] = useState("Gender");
 	const [timeFilter, setTimeFilter] = useState("Time");
-
+	
 	// useEffect(() => {
 	// 	handleCombinedFilter();
 	// }, [sportFilter, genderFilter, timeFilter]);
@@ -84,6 +81,7 @@ const GamesList = ({ games }) => {
 	// };
 
 	return (
+		user ? 
 		<>
 			<div className='dropdown-wrapper'>
 				<Dropdown>
@@ -150,20 +148,22 @@ const GamesList = ({ games }) => {
 				</Dropdown>
 			</div>
 
-			{/* <div className='games-list'>
+			<div className='games-list'>
 				{Object.entries(games).map(([id, game]) =>
-					attendedGames.includes(game.id) ? (
-						<GameCard key={id} id={id} game={game} gameAdded={true} />
+					attendedGames?.includes(id) ? (
+						<GameCard key={id} id={id} game={game} gameAdded={true} user={user}/>
 					) : (
-						<GameCard key={id} id={id} game={game} gameAdded={false} />
+						<GameCard key={id} id={id} game={game} gameAdded={false} user={user}/>
 					)
 				)}
-			</div> */}
-
-			<div className='games-list'>
-				{games && Object.entries(games).map(([id, game]) => <GameCard key={id} id={id} game={game} gameAdded={false} />)}
 			</div>
+			{/* <div className='games-list'>
+				{games && Object.entries(games).map(([id, game]) => <GameCard key={id} id={id} game={game} />)}
+			</div> */}
+			
 		</>
+		:
+		<p>Loading..</p>
 	);
 };
 

@@ -31,7 +31,7 @@ import Login from "./components/Login";
 import { LoginContext } from "./utilities/StateProvider";
 
 const Main = () => {	
-	let [loginState] = useContext(LoginContext);
+	const [loginState] = useContext(LoginContext);
 
 	//if (!loginState.user && localStorage.getItem("user"))
 	//  loginState.user = localStorage.getItem("user");
