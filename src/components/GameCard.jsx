@@ -3,14 +3,15 @@ import users_data from "../utilities/users_data";
 import "./GameCard.css";
 import { Link } from "react-router-dom";
 import { useProfile } from "../utilities/profile";
+import { useDbData } from "../utilities/firebase";
 
-const addGame = (gameId) => {
-	let attendedGames = JSON.parse(localStorage.getItem("games_attended"));
-	attendedGames.push(gameId);
-	localStorage.setItem("games_attended", JSON.stringify(attendedGames));
+const addGame = (gameId, userId) => {
+
+	const updates = {};
+	updates['users/' + userId + '/' + "attended-games"];
 };
 
-const removeGame = (gameId) => {
+const removeGame = (gameId, userId) => {
 	let attendedGames = JSON.parse(localStorage.getItem("games_attended"));
 
 	if (attendedGames.indexOf(gameId) !== -1) {
@@ -29,19 +30,19 @@ const GameCard = ({ id, game, gameAdded }) => {
 	
 	//const [attended, setAttended] = useState(gameAdded);
 	const [buttonText, setButtonText] = useState(
-		gameAdded ? "Points Added " : "Points " + game.points
+		gameAdded ? "Points Added " : "Points " + game.point
 	);
 	const [buttonStyle, setButtonStyle] = useState(
 		gameAdded ? "selected" : "unselected"
 	);
 
 	const handleButtonClick = () => {
-		if (buttonText === "Points " + game.points) {
+		if (buttonText === "Points " + game.point) {
 			setButtonText("Points Added");
 			setButtonStyle("selected");
 			addGame(game.id);
 		} else {
-			setButtonText("Points " + game.points);
+			setButtonText("Points " + game.point);
 			setButtonStyle("unselected");
 			removeGame(game.id);
 		}
@@ -49,7 +50,7 @@ const GameCard = ({ id, game, gameAdded }) => {
 		// setButtonText(attended ? "Points Added" : "Points " + game.points);
 		// setButtonStyle(attended ? "selected" : "unselected");
 	};
-	
+
 	const url = "/games/" + id + "/edit";
 
 	return (
@@ -65,7 +66,7 @@ const GameCard = ({ id, game, gameAdded }) => {
 			>
 				<div>
 					<div className='card-title'>
-						{game.sport}
+						{game.eventKey}
 						{profile?.isAdmin && (
 							<div className='card-edit-button'>
 								<Link to={url}>

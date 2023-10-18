@@ -1,20 +1,22 @@
 import GamesList from "./GamesList";
 import "./GamesPage.css";
 import NavBar from "./NavBar";
+import { useDbData } from "../utilities/firebase";
 
-const GamesPage = ({games}) => {
+const GamesPage = () => {
 
-	console.log(games);
+	const [data, error] = useDbData("/events/");
+	//console.log(data);
 
-	//console.log(!!error, error);
-	//console.log(games);
-	return (!(!!games[1]) ?
+	return (!(!!error) ? ( !(!!data) ?
+		<p> loading </p> :
 		<div className='content'>
 			<NavBar />
-			<GamesList games={games[0]} />
-		</div>  :
-		<p>{games[1]}</p>
+			<GamesList games={data} />
+		</div>)  :
+		<p>{error}</p>
 	);
+
 };
 
 export default GamesPage;

@@ -58,7 +58,7 @@ export const useDbData = (path) => {
 	  })
 	), [ path ]);
 	  
-	 // console.log("data:", data, "error:", error);
+	//console.log("data:", data, "error:", error);
 
 	return [ data, error ];
 };
@@ -87,6 +87,5 @@ export const useAuthState = () => {
 		onAuthStateChanged(getAuth(app), setUser)
 	), []);
 
-	console.log(user);
 	return [user];
 };

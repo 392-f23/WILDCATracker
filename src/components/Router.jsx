@@ -29,8 +29,8 @@ const MyRouter = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/' element={<GamesPage games={useDbData('/events/')} />}></Route>
-				<Route path='/games' element={<GamesPage games={useDbData('/events/')} />}></Route>
+				<Route path='/' element={<GamesPage />}></Route>
+				<Route path='/games' element={<GamesPage />}></Route>
 				<Route path="/games/:id/edit" element={
          			<GameFormForUrl games={games_data} />
 				}/>
