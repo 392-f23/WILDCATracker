@@ -2,32 +2,53 @@ import "./PointsPage.css";
 import { get_date } from "../utilities/get_date";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const ImageMapping = (category) => {
-	if (category === "Women’s Soccer" || category === "Men’s Soccer")
-		return "futbol";
-	else if (category === "Men’s Football") return "football";
-	else if (category === "Women’s Volleyball") return "volleyball";
-	else if (category === "Women’s Field Hockey") return "hockey-puck";
-	else if (category === "Men’s Basketball" || category === "Women’s Basketball")
-		return "basketball";
-	else if (category === "Men’s Baseball" || category === "Women’s Softball")
-		return "baseball";
-	else if (category === "Men’s Wrestling" || category === "Women’s Softball")
-		return "dumbbell";
-	else return "medal";
+const abbrevDict = {
+	SOC: "Soccer",
+	VB: "Volleyball",
+	FB: "Men's Football",
+	FHOCKEY: "Men's Field Hockey",
+	BB: "Basketball",
+	SWIM: "Swim",
+	FENC: "Fencing",
+};
+
+const getGameTitle = (abbrev) => {
+	let result = "";
+	if (abbrev[0] !== "F") {
+		const gender = abbrev[0];
+		if (gender === "M") {
+			result += "Men's ";
+		} else {
+			result += "Women's ";
+		}
+		result += abbrevDict[abbrev.substring(1)];
+	} else {
+		result += abbrevDict[abbrev];
+	}
+	return result;
 };
 
 const AttendedGameCard = ({ game }) => {
-	const date = new Date(game.date);
 	return (
 		<li id={game.id} className='custom-list'>
 			<div className='card-subgroup'>
-				{/* <FontAwesomeIcon icon={`${ImageMapping(game.sport)}`} /> */}
+				<span>
+					<img
+						src={
+							game.imgURL
+								? game.imgURL
+								: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/nusports.com/images/logos/Northwestern_university.png"
+						}
+						width='40px'
+						height='40px'
+						style={{ position: "relative", bottom: "5px" }}
+					></img>
+				</span>
 				<h5
 					className='card-title'
 					style={{ marginLeft: "5px", marginRight: "5px" }}
 				>
-					{game.sport}
+					{getGameTitle(game.eventKey)}
 				</h5>
 				<h6 className='card-subtitle  text-muted custom-date'>
 					{get_date(new Date(game.date))}

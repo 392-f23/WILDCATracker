@@ -31,7 +31,7 @@ const PointsPage = () => {
 	// 	(game) => Date() > new Date(game.date)
 	// );
 
-	const points = attendedGames.reduce((sum, game) => sum + game.point, 0);
+	const points = attendedGames.reduce((sum, game) => sum + parseInt(game.point), 0);
 	const [filteredGames, setFilteredGames] = useState(attendedGames);
 	const [window, setWindow] = useState("Total");
 	const [past, setPast] = useState(true);
@@ -50,33 +50,38 @@ const PointsPage = () => {
 			<div className='content'>
 				<NavBar></NavBar>
 				<h1 style={{ textAlign: "center" }}>{points} Points</h1>
-				<div className='button-group'>
-					{historyWindows.map((option) => (
-						<div key={option} style={{ margin: "auto" }}>
-							<input
-								type='radio'
-								className='btn-check'
-								name='btnradio'
-								id={option}
-								autoComplete='off'
-								defaultChecked={window == option}
-								onClick={() => filterGames(option)}
-							/>
-							<label
-								className={
-									option === window
-										? "time-chart-label-selected"
-										: "time-chart-label-unselected"
-								}
-								id={option}
-								htmlFor={option}
-							>
-								{option}
-							</label>
-						</div>
-					))}
-				</div>
-				<AttendedGamesChart games={attendedGames} window={window} />
+				{/* <a className="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+					Show Chart
+				</a>
+				<div className="collapse" id="collapseExample">
+					<div className='button-group'>
+						{historyWindows.map((option) => (
+							<div key={option} style={{ margin: "auto" }}>
+								<input
+									type='radio'
+									className='btn-check'
+									name='btnradio'
+									id={option}
+									autoComplete='off'
+									defaultChecked={window == option}
+									onClick={() => filterGames(option)}
+								/>
+								<label
+									className={
+										option === window
+											? "time-chart-label-selected"
+											: "time-chart-label-unselected"
+									}
+									id={option}
+									htmlFor={option}
+								>
+									{option}
+								</label>
+							</div>
+						))}
+					</div>
+					<AttendedGamesChart games={attendedGames} window={window} />
+				</div> */}
 				<div className="bottom-half">
 					<div
 						className='button-group'

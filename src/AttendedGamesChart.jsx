@@ -58,7 +58,7 @@ const AttendedGamesChart = ({ games, window }) => {
 	const points = [
 		games
 			.filter((game) => new Date(game.date) <= firstDate)
-			.reduce((sum, game) => sum + game.point, 0),
+			.reduce((sum, game) => sum + parseInt(game.point), 0),
 	];
 	var lastPoints = points[0];
 	for (let i = 1; i < dateLabels.length; i++) {
@@ -67,7 +67,7 @@ const AttendedGamesChart = ({ games, window }) => {
 				dateLabels[i - 1] < new Date(game.date) &&
 				new Date(game.date) <= dateLabels[i]
 		)
-		const newPoints = filtered.length > 0 ? filtered.reduce((sum, game) => sum + game.point, lastPoints) : lastPoints;
+		const newPoints = filtered.length > 0 ? filtered.reduce((sum, game) => sum + parseInt(game.point), lastPoints) : lastPoints;
 		lastPoints = newPoints;
 		points.push(newPoints);
 	}

@@ -21,8 +21,8 @@ const GameCard = ({ id, game, gameAdded, user }) => {
 	if (profileLoading) return <h1>Loading user profile</h1>;
 	if (!profile) return <h1>No profile data</h1>;
 
-	const [userState] = useContext(LoginContext);
-	const [update, result] = useDbUpdate(`/users/${userState.user.uid}`);
+	// const [userState] = useContext(LoginContext);
+	const [update, result] = useDbUpdate(`/users/${profile?.user?.uid}`);
 
 	//const [attended, setAttended] = useState(gameAdded);
 	const [buttonText, setButtonText] = useState(
