@@ -8,15 +8,15 @@ import { LoginContext } from "../utilities/StateProvider";
 
 const GamesList = ({ games }) => {
 	const [userState] = useContext(LoginContext);
-	const [user, error] = useDbData(`/users/${userState.user.uid}`)
-	const attendedGames = !!user ? user?.['games-attended'] : [];
+	const [user, error] = useDbData(`/users/${userState.user.uid}`);
+	const attendedGames = !!user ? user?.["games-attended"] : [];
 
 	const [filteredGames, setFilteredGames] = useState(games);
 
 	const [sportFilter, setSportFilter] = useState("Sport");
 	const [genderFilter, setGenderFilter] = useState("Gender");
 	const [timeFilter, setTimeFilter] = useState("Time");
-	
+
 	// useEffect(() => {
 	// 	handleCombinedFilter();
 	// }, [sportFilter, genderFilter, timeFilter]);
@@ -80,8 +80,7 @@ const GamesList = ({ games }) => {
 	// 	setTimeFilter(filterType);
 	// };
 
-	return (
-		user ? 
+	return user ? (
 		<>
 			<div className='dropdown-wrapper'>
 				<Dropdown>
@@ -151,18 +150,29 @@ const GamesList = ({ games }) => {
 			<div className='games-list'>
 				{Object.entries(games).map(([id, game]) =>
 					attendedGames?.includes(id) ? (
-						<GameCard key={id} id={id} game={game} gameAdded={true} user={user}/>
+						<GameCard
+							key={id}
+							id={id}
+							game={game}
+							gameAdded={true}
+							user={user}
+						/>
 					) : (
-						<GameCard key={id} id={id} game={game} gameAdded={false} user={user}/>
+						<GameCard
+							key={id}
+							id={id}
+							game={game}
+							gameAdded={false}
+							user={user}
+						/>
 					)
 				)}
 			</div>
 			{/* <div className='games-list'>
 				{games && Object.entries(games).map(([id, game]) => <GameCard key={id} id={id} game={game} />)}
 			</div> */}
-			
 		</>
-		:
+	) : (
 		<p>Loading..</p>
 	);
 };
