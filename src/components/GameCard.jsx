@@ -107,18 +107,44 @@ const GameCard = ({ id, game, gameAdded, user }) => {
 							</div>
 						)}
 					</div>
-					<h6 className='card-subtitle mb-2 text-muted'>
-						Northwestern vs {game.opponent}
-					</h6>
-					<h6 className='card-subtitle mb-2 text-muted'>
+					<h6 className='card-subtitle mb-2 text-muted'>Northwestern</h6>
+					<h5
+						className='card-subtitle mb-2'
+						style={{
+							// position: "absolute",
+							// right: "50px",
+							// top: "58px",
+							fontWeight: "bold",
+						}}
+					>
+						{" "}
+						vs{" "}
+					</h5>
+					<span>
+						<h6 className='card-subtitle mb-2 text-muted'>{game.opponent}</h6>
+						<img
+							src={
+								game.imgURL
+									? game.imgURL
+									: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/nusports.com/images/logos/Northwestern_university.png"
+							}
+							width='50px'
+							height='50px'
+							className='university-logo'
+						></img>
+					</span>
+
+					<h6
+						className='card-subtitle mb-2 text-muted'
+						style={{ marginTop: "20px" }}
+					>
 						{new Date(game.date).toDateString()} {game.time}
 					</h6>
 				</div>
-				<img src={game.imgURL} width={game.width} height={game.height}></img>
+				<hr style={{ border: "1px solid rgb(78, 42, 132)" }}></hr>
 				<div>
-					<hr></hr>
 					<div className='card-location mb-2 text-muted'>
-						<a className='text-muted' href={game.locationURL}>
+						<a className='card-location text-muted' href={game.locationURL}>
 							{game.location}
 						</a>
 					</div>

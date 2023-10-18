@@ -37,3 +37,9 @@
 	width: 10px;
 	color: grey;
 }
+
+.university-logo {
+	position: absolute;
+	right: 10px;
+	top: 60px;
+}
