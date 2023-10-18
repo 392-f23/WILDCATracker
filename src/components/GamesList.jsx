@@ -109,8 +109,8 @@ const GamesList = ({ games }) => {
 	const handleTimeFilterChange = (filterType) => {
 		setTimeFilter(filterType);
 	};
-
-	return user ? (
+	
+	return !!user ? (
 		<>
 			<div className='dropdown-wrapper'>
 				<Dropdown>
