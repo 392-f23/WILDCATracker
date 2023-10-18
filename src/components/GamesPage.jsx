@@ -4,9 +4,7 @@ import NavBar from "./NavBar";
 import { useDbData } from "../utilities/firebase";
 
 const GamesPage = () => {
-
 	const [data, error] = useDbData("/events/");
-	//console.log(data);
 
 	return (!(!!error) ? ( !(!!data) ?
 		<p> loading </p> :
