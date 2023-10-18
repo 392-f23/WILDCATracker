@@ -26,7 +26,10 @@ const validateGameData = (key, val) => {
 	}
 };
 
-const InputField = ({ name, text, state, change }) => (
+const InputField = ({ name, text, state, change }) => {
+    console.log(state.values?.[name])
+    console.log(state.values)
+    return(
 	<div className='mb-3'>
 		<label htmlFor={name} className='form-label'>
 			{text}
@@ -41,6 +44,7 @@ const InputField = ({ name, text, state, change }) => (
 		<div className='invalid-feedback'>{state.errors?.[name]}</div>
 	</div>
 );
+    };
 
 const ButtonBar = ({ message, disabled }) => {
 	const navigate = useNavigate();
@@ -69,7 +73,7 @@ const ButtonBar = ({ message, disabled }) => {
 const GameEditor = ({ id, game }) => {
 	const [update, result] = useDbUpdate(`/events/${id}`);
 	const [state, change] = useFormData(validateGameData, game);
-	console.log(state);
+
 	const submit = (evt) => {
 		evt.preventDefault();
 		if (!state.errors && state.values !== game) {
@@ -104,7 +108,7 @@ const GameEditor = ({ id, game }) => {
 					state={state}
 					change={change}
 				/>
-				<InputField name='point' text='Point' state={state} change={change} />
+				<InputField name='point' text='Points' state={state} change={change} />
 				<ButtonBar message={result?.message} />
 			</form>
 		</div>
