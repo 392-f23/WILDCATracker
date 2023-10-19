@@ -36,7 +36,7 @@ const PointsPage = () => {
 	const [filteredGames, setFilteredGames] = useState(attendedGames);
 	const [window, setWindow] = useState("Total");
 	const [past, setPast] = useState(true);
-	const [collapsed, setCollapsed] = useState(true);
+	const [collapsed, setCollapsed] = useState(false);
 
 	const filterGames = (filter) => {
 		setWindow(filter);
