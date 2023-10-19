@@ -48,15 +48,15 @@ const GamesList = ({ games }) => {
 		const newFiltered = Object.fromEntries(
 			Object.entries(filtered).filter(([key, game]) => {
 				if (genderFilter === "Gender") return true;
+				if (genderFilter === "Men" && game.eventKey === "FB") return true;
+        		if (genderFilter === "Men" && game.eventKey === "FHOCKEY") return true;
 				const matches = game.eventKey && game.eventKey[0] === genderFilter[0];
 				if (!matches) {
-					console.log("Filtered out game:", game);
 				}
 				return matches;
 			})
 		);
 
-		// console.log("Filtered games:", newFiltered);
 		filtered = newFiltered;
 
 		const currentDate = new Date();
