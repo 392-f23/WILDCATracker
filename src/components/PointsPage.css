@@ -46,7 +46,7 @@
 
 .time-chart-label-selected {
 	color: white;
-	width: 80px;
+	width: 100px;
 	font-size: 18px;
 	text-align: center;
 	padding-block: 3px;
@@ -55,8 +55,52 @@
 }
 
 .time-chart-label-unselected {
-	width: 80px;
+	width: 100px;
 	font-size: 18px;
+	color: white;
+	text-align: center;
+	padding-block: 3px;
+	border-radius: 5px;
+	background-color: rgb(198, 173, 236);
+	cursor: pointer;
+}
+
+.chart-toggle-selected {
+	color: white;
+	width: 180px;
+	height: 45px;
+	font-size: 25px;
+	text-align: center;
+	padding-block: 3px;
+	border-radius: 5px;
+	background-color: rgb(98, 48, 174);
+}
+
+.chart-toggle-unselected {
+	width: 180px;
+	height: 45px;
+	font-size: 25px;
+	color: white;
+	text-align: center;
+	padding-block: 3px;
+	border-radius: 5px;
+	background-color: rgb(198, 173, 236);
+	cursor: pointer;
+}
+
+.past-future-selected {
+	color: white;
+	width: 150px;
+	font-size: 22px;
+	text-align: center;
+	padding-block: 3px;
+	border-radius: 5px;
+	background-color: rgb(98, 48, 174);
+}
+
+.past-future-unselected {
+	width: 150px;
+	font-size: 22px;
 	color: white;
 	text-align: center;
 	padding-block: 3px;
@@ -75,8 +119,22 @@
 }
 
 .bottom-half {
-	border-top: 2px solid lightgray;
-	margin-top: 40px;
+	/* border-top: 2px solid lightgray; */
+	margin-top: 10px;
 	padding-top: 20px;
 
+}
+
+.chart-toggle-button {
+	background-color: rgb(98, 48, 174);
+	text-align: center;
+	align-items: center;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 2px solid lightgray;
+	padding-bottom: 20px;
 }

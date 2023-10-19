@@ -24,17 +24,19 @@ const PointsPage = () => {
 		(gameId) => data[gameId]
 	);
 	const futureGames = attendedGames.filter(
-		(game) => Date() < new Date(game.date)
+		(game) => new Date() < new Date(game.date)
 	);
-	futureGames.sort((a, b) => a.date + b.date);
-	// const pastGames = attendedGames.filter(
-	// 	(game) => Date() > new Date(game.date)
-	// );
+	futureGames.sort((a, b) => a.date - b.date);
+	const pastGames = attendedGames.filter(
+		(game) => new Date() >= new Date(game.date)
+	);
+	pastGames.sort((a, b) => b.date - a.date);
 
 	const points = attendedGames.reduce((sum, game) => sum + parseInt(game.point), 0);
 	const [filteredGames, setFilteredGames] = useState(attendedGames);
 	const [window, setWindow] = useState("Total");
 	const [past, setPast] = useState(true);
+	const [collapsed, setCollapsed] = useState(true);
 
 	const filterGames = (filter) => {
 		setWindow(filter);
@@ -49,11 +51,17 @@ const PointsPage = () => {
 		profile.user !== undefined && data !== undefined ? (
 			<div className='content'>
 				<NavBar></NavBar>
-				<h1 style={{ textAlign: "center" }}>{points} Points</h1>
-				{/* <a className="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-					Show Chart
-				</a>
-				<div className="collapse" id="collapseExample">
+				<div className="header">
+					<h1 style={{ textAlign: "center", fontSize: "60px", color: "rgb(98, 48, 174)" }}>{points} Points</h1>
+					<input type="checkbox" className="btn-check" id="btn-check-outlined" defaultChecked={collapsed} onClick={() => setCollapsed(!collapsed)} />
+					<label className={
+						collapsed
+							? "chart-toggle-selected"
+							: "chart-toggle-unselected"
+					} htmlFor="btn-check-outlined">Toggle Chart</label>
+					{/* <button type="checkbox" className="btn-check chart-toggle-button" onClick={() => setCollapsed(!collapsed)}>Toggle Chart</button> */}
+				</div>
+				{collapsed && <div style={{ borderBottom: "2px solid lightgray", padding: "20px" }}>
 					<div className='button-group'>
 						{historyWindows.map((option) => (
 							<div key={option} style={{ margin: "auto" }}>
@@ -81,7 +89,7 @@ const PointsPage = () => {
 						))}
 					</div>
 					<AttendedGamesChart games={attendedGames} window={window} />
-				</div> */}
+				</div>}
 				<div className="bottom-half">
 					<div
 						className='button-group'
@@ -94,7 +102,7 @@ const PointsPage = () => {
 							<div key={option.label} style={{ margin: "auto" }}>
 								<input
 									type='radio'
-									className='btn-check '
+									className='btn-check custom-button'
 									name='btnradio'
 									id={option.label}
 									autoComplete='off'
@@ -104,8 +112,8 @@ const PointsPage = () => {
 								<label
 									className={
 										option.val === past
-											? "time-chart-label-selected"
-											: "time-chart-label-unselected"
+											? "past-future-selected"
+											: "past-future-unselected "
 									}
 									id={option.label}
 									htmlFor={option.label}
@@ -116,9 +124,7 @@ const PointsPage = () => {
 						))}
 					</div>
 					{past ? (
-						<AttendedGamesList games={attendedGames.filter(
-							(game) => new Date() > new Date(game.date)
-						)} />
+						<AttendedGamesList games={pastGames} />
 					) : (
 						<AttendedGamesList games={futureGames} />
 					)}
