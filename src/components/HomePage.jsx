@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./HomePage.css";
 import mbbGamesData from "../utilities/mbbGames.json";
 import NavBar from "./NavBar";
 import { ref, get } from "firebase/database";
 import { database } from "../utilities/firebase";
+import { useAuthState } from "../utilities/firebase";
+import { LoginContext } from "../utilities/StateProvider";
 
 const HomePage = () => {
 	const [showAllGames, setShowAllGames] = useState(false);
@@ -11,7 +13,11 @@ const HomePage = () => {
 	const today = new Date().toISOString().split("T")[0];
 	const pastGames = mbbGamesData.filter((game) => game.date < today);
 	const attendedGames = pastGames.filter((game) => game.attended);
-	const uid = localStorage.getItem("uid");
+
+	const [login, setLoginState] = useContext(LoginContext);
+	console.log(login);
+
+	const uid = login.user.uid;
 
 	console.log(`users/${uid}`);
 	const userRef = ref(database, `users/${uid}`);
