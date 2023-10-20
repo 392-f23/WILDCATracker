@@ -56,7 +56,7 @@ const HomePage = () => {
 				<p>Year: 3rd Year</p>
 				<p>Graduation Date: 2025</p>
 			</div> */}
-			<button
+			{/* <button
 				style={{
 					background: "rgb(57, 35, 89)",
 					borderRadius: "5px",
@@ -93,7 +93,7 @@ const HomePage = () => {
 						</li>
 					))}
 				</ul>
-			)}
+			)} */}
 		</div>
 	);
 };
