@@ -6,17 +6,36 @@ import PointsPage from "./PointsPage";
 import HomePage from "./HomePage";
 import games_data from "../utilities/data.js";
 import users_data from "../utilities/users_data";
+import GameEditor from "./GameEditor";
+import { useDbData } from "../utilities/firebase";
+import {get, ref} from "firebase/database"
+
+const GameFormForUrl = ({games}) => {
+    const { id } = useParams();
+    return <div className = "container"><GameEditor id={id} game={games[id]} /></div>;
+};
+
+
+
 
 const MyRouter = () => {
+	// let data = null
+	// get(ref(database, `events/`)).then(snapshot =>
+	// 	{if(snapshot.exists())
+	// 		data = snapshot;}
+	// )
+	// console.log(data);
+	const [data, error] = useDbData("/events/");
+
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/' element={<NavBar></NavBar>}></Route>
-				<Route path='/games' element={<GamesPage games={games_data} />}></Route>
-				<Route
-					path='/points'
-					element={<PointsPage user={users_data[0]} />}
-				></Route>
+				<Route path='/' element={<GamesPage />}></Route>
+				<Route path='/games' element={<GamesPage />}></Route>
+				<Route path="/games/:id/edit" element={
+         			<GameFormForUrl games={data} />
+				}/>
+				<Route path='/points' element={<PointsPage />}></Route>
 				<Route path='/home' element={<HomePage />}></Route>
 			</Routes>
 		</BrowserRouter>

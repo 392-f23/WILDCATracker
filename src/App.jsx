@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useContext } from "react";
 import logo from "./logo.svg";
 import "./App.css";
@@ -15,6 +15,7 @@ import {
 	faFootball,
 	faBaseball,
 	faMedal,
+	faDumbbell,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
 	faVolleyball,
@@ -23,28 +24,29 @@ library.add(
 	faBasketball,
 	faFootball,
 	faBaseball,
-	faMedal
+	faMedal,
+	faDumbbell
 );
 import Login from "./components/Login";
-import {LoginContext} from "./utilities/StateProvider";
+import { LoginContext } from "./utilities/StateProvider";
 
 const Main = () => {
-    let [loginState] = useContext(LoginContext);
+	const [loginState] = useContext(LoginContext);
 
-	console.log(loginState);
-	if(!loginState.user && localStorage.getItem('user'))
-		loginState.user = localStorage.getItem('user')
-		
- 	return ( loginState.user  ? 
+	// if (!loginState.user && localStorage.getItem("user"))
+	// 	loginState.user = localStorage.getItem("user");
+
+	return loginState.user ? (
 		<div style={{ background: "whitesmoke" }}>
 			<MyRouter />
-		</div> : 
+		</div>
+	) : (
 		<Login />
 	);
 };
 
 const App = () => {
-    return <Main />;
+	return <Main />;
 };
 
 export default App;
