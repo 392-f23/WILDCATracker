@@ -1,0 +1,162 @@
+.content {
+	max-width: 500px;
+	margin: auto;
+}
+
+.homepage {
+	font-family: Arial, sans-serif;
+	background-color: purple;
+	padding: 20px;
+	color: white;
+}
+
+.userInfo,
+.studentInfo {
+	margin-bottom: 20px;
+}
+
+.headshot {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	border-radius: 50%;
+	margin-right: 20px;
+}
+
+button {
+	background-color: lightpurple;
+	border: none;
+	padding: 10px 20px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	color: white;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+}
+
+button:hover {
+	background-color: #b19cd9;
+	
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+} 
+
+
+
+/* .content {
+	max-width: 500px;
+	margin: auto;
+}
+
+.homepage {
+	font-family: Arial, sans-serif;
+	background-color: purple;
+	padding: 20px;
+	color: white;
+}
+
+.userInfo,
+.studentInfo {
+	margin-bottom: 20px;
+}
+
+.headshot {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	border-radius: 50%;
+	margin-right: 20px;
+}
+
+button {
+	background-color: #8C7AA9;
+	border: none;
+	padding: 10px 20px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	color: white;
+	transition: background-color 0.3s ease;
+	font-weight: 600;
+}
+
+button:hover {
+	background-color: #6B5B95;
+
+	ul {
+		list-style-type: none;
+		padding: 0;
+	} */
+
+
+
+
+
+	/* .content {
+		max-width: 650px;
+		margin: 40px auto;
+		background-color: #6B5B95; 
+		padding: 30px;
+		border-radius: 10px;
+		box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+		color: #EAEAEA; 
+	
+	.userInfo {
+		display: flex;
+		align-items: center;
+		border-bottom: 2px solid #8C7AA9; 
+		padding-bottom: 20px;
+		margin-bottom: 20px;
+	}
+	
+	.studentInfo {
+		margin-bottom: 30px;
+	}
+	
+	.headshot {
+		width: 120px;
+		height: 120px;
+		object-fit: cover;
+		border-radius: 50%;
+		margin-right: 20px;
+		border: 3px solid #EAEAEA; 
+	
+	button {
+		background-color: #8C7AA9;
+		border: none;
+		padding: 12px 24px;
+		margin: 10px 0;
+		cursor: pointer;
+		color: white;
+		border-radius: 6px;
+		transition: transform 0.3s ease;
+		font-weight: 600;
+		width: 100%; 
+	}
+	
+	button:hover {
+		background-color: #6B5B95;
+		transform: translateY(-2px);  
+	}
+	
+	ul {
+		list-style-type: none;
+		padding: 0;
+		margin-top: 10px; 
+		background-color: #8C7AA9;  
+		padding: 10px;
+		border-radius: 5px;
+	}
+	
+	li {
+		padding: 5px 0;
+		border-bottom: 1px dashed #EAEAEA; 
+	}
+	
+	li:last-child {
+		border-bottom: none; 
+	}
+	
+	 */

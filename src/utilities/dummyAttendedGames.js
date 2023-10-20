@@ -1,4 +1,4 @@
-const games_data = [
+const attendedGames = [
 	{
 		id: 1,
 		sport: "Women’s Soccer",
@@ -52,60 +52,6 @@ const games_data = [
 		date: "2023-09-24",
 		time: "1:00 p.m.",
 		points: 6,
-	},
-	{
-		id: 7,
-		sport: "Women’s Soccer",
-		opponent: "Illinois",
-		location: "Lanny and Sharon Martin Stadium",
-		date: "2023-09-28",
-		time: "7:00 p.m.",
-		points: 4,
-	},
-	{
-		id: 8,
-		sport: "Women’s Field Hockey",
-		opponent: "Michigan State",
-		location: "Lakeside Field",
-		date: "2023-09-29",
-		time: "3:00 p.m.",
-		points: 4,
-	},
-	{
-		id: 9,
-		sport: "Women’s Volleyball",
-		opponent: "Michigan State",
-		location: "Welsh-Ryan Arena",
-		date: "2023-09-29",
-		time: "7:00 p.m.",
-		points: 4,
-	},
-	{
-		id: 10,
-		sport: "Men’s Football",
-		opponent: "#6 Penn State",
-		location: "Ryan Field",
-		date: "2023-09-30",
-		time: "11:00 a.m.",
-		points: 3,
-	},
-	{
-		id: 11,
-		sport: "Women’s Field Hockey",
-		opponent: "#15 Michigan",
-		location: "Lakeside Field",
-		date: "2023-10-01",
-		time: "11:00 a.m.",
-		points: 4,
-	},
-	{
-		id: 12,
-		sport: "Women’s Soccer",
-		opponent: "Nebraska",
-		location: "Lanny and Sharon Martin Stadium",
-		date: "2023-10-01",
-		time: "2:00 p.m.",
-		points: 4,
 	},
 	{
 		id: 13,
@@ -162,33 +108,6 @@ const games_data = [
 		points: 4,
 	},
 	{
-		id: 19,
-		sport: "Men’s Soccer",
-		opponent: "Michigan State",
-		location: "Lanny and Sharon Martin Stadium",
-		date: "2023-10-20",
-		time: "7:00 p.m.",
-		points: 4,
-	},
-	{
-		id: 20,
-		sport: "Women’s Volleyball",
-		opponent: "Michigan",
-		location: "Welsh-Ryan Arena",
-		date: "2023-10-21",
-		time: "7:00 p.m.",
-		points: 4,
-	},
-	{
-		id: 21,
-		sport: "Men’s Soccer",
-		opponent: "Indiana",
-		location: "Lanny and Sharon Martin Stadium",
-		date: "2023-10-24",
-		time: "7:00 p.m.",
-		points: 4,
-	},
-	{
 		id: 22,
 		sport: "Women’s Field Hockey",
 		opponent: "Maryland",
@@ -208,4 +127,4 @@ const games_data = [
 	},
 ];
 
-export default games_data;
+export default attendedGames;
