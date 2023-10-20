@@ -1,6 +1,0 @@
-[
-    { "id": 1, "name": "MBB Game 1", "date": "2022-09-10", "attended": true },
-    { "id": 2, "name": "MBB Game 2", "date": "2022-09-15", "attended": false },
-    { "id": 3, "name": "MBB Game 3", "date": "2022-09-20", "attended": true }
-  ]
-  

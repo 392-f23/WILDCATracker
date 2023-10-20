@@ -1,9 +1,0 @@
-.games-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.games-list > * {
-    flex: 1 0 10rem;
-}

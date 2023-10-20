@@ -1,50 +1,26 @@
-import React, {useEffect} from "react";
-import { useContext } from "react";
+import { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import games_data from "./utilities/data.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import NavBar from "./components/NavBar";
 import MyRouter from "./components/Router";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-	faVolleyball,
-	faHockeyPuck,
-	faFutbol,
-	faBasketball,
-	faFootball,
-	faBaseball,
-	faMedal,
-} from "@fortawesome/free-solid-svg-icons";
-library.add(
-	faVolleyball,
-	faHockeyPuck,
-	faFutbol,
-	faBasketball,
-	faFootball,
-	faBaseball,
-	faMedal
-);
-import Login from "./components/Login";
-import {LoginContext} from "./utilities/StateProvider";
 
 const Main = () => {
-    let [loginState] = useContext(LoginContext);
+	console.log(games_data);
 
-	console.log(loginState);
-	if(!loginState.user && localStorage.getItem('user'))
-		loginState.user = localStorage.getItem('user')
-		
- 	return ( loginState.user  ? 
-		<div style={{ background: "whitesmoke" }}>
-			<MyRouter />
-		</div> : 
-		<Login />
+	return (
+		<MyRouter>
+			<NavBar>
+			</NavBar>
+		</MyRouter>
+
 	);
 };
 
 const App = () => {
-    return <Main />;
+	return <Main></Main>;
 };
 
 export default App;
