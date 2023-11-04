@@ -51,9 +51,9 @@ const Login = () => {
 					type: loginActions.set_user,
 					user: result.user,
 				});
-				console.log("User logged in successfuly!");
-				localStorage.setItem("user", JSON.stringify(result.user));
-				localStorage.setItem("uid", result.user.uid);
+				// console.log("User logged in successfuly!");
+				// localStorage.setItem("user", JSON.stringify(result.user));
+				// localStorage.setItem("uid", result.user.uid);
 				handleUserLogin(result.user);
 			})
 			.catch((error) => {
