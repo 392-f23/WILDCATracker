@@ -148,7 +148,7 @@ const GameCard = ({ id, game, gameAdded, user }) => {
 							{game.location}
 						</a>
 					</div>
-					<button
+					<button aria-label='edit'
 						className={`game-card-button-${buttonStyle}`}
 						onClick={handleButtonClick}
 					>

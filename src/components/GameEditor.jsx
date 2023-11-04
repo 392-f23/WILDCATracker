@@ -8,7 +8,7 @@ const validateGameData = (key, val) => {
     case 'eventKey': 
       return /((WSOC|MSOC|WVB|FB|FHOCKEY|WFENC|MSWIM|MBB|WBB){1,1})/.test(val) ? '' : 'must be one of the following event keys: WSOC, MSOC, WVB, FB, FHOCKEY, WFENC, MSWIM, MBB, or WBB';
     case 'date':
-      return (/(\d{4}[-]\d{2}[-]\d{2})/.test(val) && val.length === 10) ? '' : 'must be in the form of YYYY-MM-DD, e.g., 2023-10-16';
+      return /(\d{4}[-]\d{2}[-]\d{2})/.test(val) ? '' : 'must be in the form of YYYY-MM-DD, e.g., 2023-10-16';
     case 'time':
       return /(\d{1}[:]\d{2}\s(a.m.|p.m.))/.test(val) ? '' : 'must follow the structure #:## a.m. (or p.m.), e.g., 7:00 p.m.';
     case 'point':
@@ -20,11 +20,9 @@ const validateGameData = (key, val) => {
 };
 
 const InputField = ({name, text, state, change}) => {
-  //console.log(change)
-  if (name === 'date' && (state?.values[name].length === 10 || typeof state?.values[name] === 'number')){
+  if (name === 'date' ){
     var date = new Date(state.values?.[name])
     var new_state = new Date(date.getTime() - (date.getTimezoneOffset() * 60000) ).toISOString().split("T")[0];
-    //var new_state = date.getTime();
     return(
     <div className="mb-3">
         <label htmlFor={name} className="form-label">{text}</label>
@@ -60,14 +58,9 @@ const ButtonBar = ({message, disabled}) => {
 const GameEditor = ({id, game}) => {
   const [update, result] = useDbUpdate(`/events/${id}`);
   const [state, change] = useFormData(validateGameData, game);
-  //console.log(state);
   const submit = (evt) => {
     evt.preventDefault();
     if (!state.errors && state.values !== game) {
-      var date = new Date(state.values['date']);
-      date.setDate(date.getDate() + 1);
-      state.values['date'] = date.getTime();
-      state.values['point'] = Number(state.values['point']) ;
       update(state.values);
     }
   };
@@ -78,21 +71,25 @@ const GameEditor = ({id, game}) => {
       <InputField name="eventKey" 
                   text="Event Key" 
                   state={state} 
-                  change={change} />
+                  change={change} 
+                  aria-label="eventkey"/>
       <InputField name="opponent"
                   text="Opponent"
                   state={state}
-                  change={change} />
-      <InputField name="date" text="Date" state={state} change={change} />
-      <InputField name="time" text="Time" state={state} change={change} />
+                  change={change} 
+                  aria-label="opponent"/>
+      <InputField name="date" text="Date" state={state} change={change} aria-label="date" />
+      <InputField name="time" text="Time" state={state} change={change} aria-label="time" />
       <InputField name="location"
                   text="Location" 
                   state={state} 
-                  change={change} />
+                  change={change} 
+                  aria-label="location"/>
       <InputField name="point" 
                   text="Points" 
                   state={state} 
-                  change={change} />
+                  change={change} 
+                  aria-label="points"/>
       <ButtonBar message={result?.message} />
     </form>
     </div>
