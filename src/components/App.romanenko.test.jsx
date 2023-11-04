@@ -67,5 +67,6 @@ describe("Signed In User Page Access", () => {
 		useProfile.mockReturnValue([{ user: null, isAdmin: false}]);
 		render(<App />);
 		expect(() => screen.getByText(/Boston University/)).toThrow();
+		expect(screen.getByText(/Sign In/)).toBeDefined();
 	});
 });
