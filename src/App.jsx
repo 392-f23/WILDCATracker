@@ -5,7 +5,6 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import NavBar from "./components/NavBar";
-import MyRouter from "./components/Router";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
 	faVolleyball,
@@ -25,18 +24,20 @@ library.add(
 	faFootball,
 	faBaseball,
 	faMedal,
-	faDumbbell
+	faDumbbell,
 );
 import Login from "./components/Login";
+import MyRouter from "./components/Router";
 import { LoginContext } from "./utilities/StateProvider";
+import { useAuthState } from "./utilities/firebase";
 
 const Main = () => {
-	const [loginState] = useContext(LoginContext);
+	const [loginState] = useAuthState();
 
-	// if (!loginState.user && localStorage.getItem("user"))
-	// 	loginState.user = localStorage.getItem("user");
+	//if (!loginState.user && localStorage.getItem("user"))
+	//	loginState.user = localStorage.getItem("user");
 
-	return loginState.user ? (
+	return loginState ? (
 		<div style={{ background: "whitesmoke" }}>
 			<MyRouter />
 		</div>

@@ -4,7 +4,6 @@ import "./GameCard.css";
 import { Link } from "react-router-dom";
 import { useProfile } from "../utilities/profile";
 import { useDbData, useDbUpdate } from "../utilities/firebase";
-import { LoginContext } from "../utilities/StateProvider";
 
 const GameCard = ({ id, game, gameAdded, user }) => {
 	const abbrevDict = {
@@ -17,6 +16,7 @@ const GameCard = ({ id, game, gameAdded, user }) => {
 		FENC: "Fencing",
 	};
 	const [profile, profileLoading, profileError] = useProfile();
+
 	if (profileError) return <h1>Error loading profile: {`${profileError}`}</h1>;
 	if (profileLoading) return <h1>Loading user profile</h1>;
 	if (!profile) return <h1>No profile data</h1>;

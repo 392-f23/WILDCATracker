@@ -4,8 +4,9 @@ import mbbGamesData from "../utilities/mbbGames.json";
 import NavBar from "./NavBar";
 import { ref, get } from "firebase/database";
 import { database } from "../utilities/firebase";
-import { useAuthState } from "../utilities/firebase";
-import { LoginContext } from "../utilities/StateProvider";
+import { useProfile } from "../utilities/profile";
+//import { useAuthState } from "../utilities/firebase";
+//import { LoginContext } from "../utilities/StateProvider";
 
 const HomePage = () => {
 	const [showAllGames, setShowAllGames] = useState(false);
@@ -14,12 +15,9 @@ const HomePage = () => {
 	const pastGames = mbbGamesData.filter((game) => game.date < today);
 	const attendedGames = pastGames.filter((game) => game.attended);
 
-	const [login, setLoginState] = useContext(LoginContext);
-	console.log(login);
+	const [profile, profileLoading, profileError] = useProfile();
+	const uid = profile?.user?.uid;
 
-	const uid = login.user.uid;
-
-	console.log(`users/${uid}`);
 	const userRef = ref(database, `users/${uid}`);
 
 	const [displayName, setDisplayName] = useState("");
