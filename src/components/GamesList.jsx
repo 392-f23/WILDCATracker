@@ -188,7 +188,7 @@ const GamesList = ({ games }) => {
 					attendedGames?.includes(id) ? (
 						<GameCard key={id} id={id} game={game} gameAdded={true} user={user} data-testid="game-card"/>
 					) : (
-						<GameCard key={id} id={id} game={game} gameAdded={false} user={user} data-testid="game-card"/>
+						<GameCard key={id} id={id} game={game} gameAdded={false} user={user} data-testid="game-card" />
 					)
 				)}
 			</div>
