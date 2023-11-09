@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useProfile } from "../utilities/profile";
 import { useDbData, useDbUpdate } from "../utilities/firebase";
 
-const GameCard = ({ id, game, gameAdded, user }) => {
+const GameCard = ({ id, game, gameAdded, user, ...props }) => {
 	const abbrevDict = {
 		SOC: "Soccer",
 		VB: "Volleyball",
@@ -82,7 +82,7 @@ const GameCard = ({ id, game, gameAdded, user }) => {
 	const url = "/games/" + id + "/edit";
 
 	return (
-		<div className='card m-2 p-2'>
+		<div {...props} className='card m-2 p-2'>
 			<div
 				style={{
 					display: "flex",

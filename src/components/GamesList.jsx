@@ -156,7 +156,7 @@ const GamesList = ({ games }) => {
 						<Dropdown.Item onClick={() => handleGenderFilterChange("Men")}>
 							Men
 						</Dropdown.Item>
-						<Dropdown.Item onClick={() => handleGenderFilterChange("Women")}>
+						<Dropdown.Item data-testid="women-dropdown-item" onClick={() => handleGenderFilterChange("Women")}>
 							Women
 						</Dropdown.Item>
 					</Dropdown.Menu>
@@ -186,9 +186,9 @@ const GamesList = ({ games }) => {
 			<div className='games-list'>
 				{Object.entries(filteredGames).map(([id, game]) =>
 					attendedGames?.includes(id) ? (
-						<GameCard key={id} id={id} game={game} gameAdded={true} user={user} />
+						<GameCard key={id} id={id} game={game} gameAdded={true} user={user} data-testid="game-card"/>
 					) : (
-						<GameCard key={id} id={id} game={game} gameAdded={false} user={user} />
+						<GameCard key={id} id={id} game={game} gameAdded={false} user={user} data-testid="game-card"/>
 					)
 				)}
 			</div>
