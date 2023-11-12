@@ -31,18 +31,20 @@ import Login from "./components/Login";
 import { LoginContext } from "./utilities/StateProvider";
 
 const Main = () => {
-	const [loginState] = useContext(LoginContext);
+	//const [loginState] = useContext(LoginContext);
 
-	if (!loginState.user && localStorage.getItem("user"))
-		loginState.user = localStorage.getItem("user");
+	// if (!loginState.user && localStorage.getItem("user"))
+	// 	loginState.user = localStorage.getItem("user");
 
-	return loginState.user ? (
-		<div style={{ background: "whitesmoke" }}>
-			<MyRouter />
-		</div>
-	) : (
-		<Login />
-	);
+	// return loginState.user ? (
+	// 	<div style={{ background: "whitesmoke" }}>
+	// 		<MyRouter />
+	// 	</div>
+	// ) : (
+	// 	<Login />
+	// );
+	<MyRouter />
+
 };
 
 const App = () => {
