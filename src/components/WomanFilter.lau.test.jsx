@@ -3,11 +3,9 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import '@testing-library/jest-dom';
 import GamesList from "./GamesList";
 
-
 const mockGames = {
   "game-1": { eventKey: "WSOC" },
-  "game-2": { eventKey: "MSOC" },
-
+  "game-2": { eventKey: "MSOC" }
 };
 
 vi.mock("../utilities/firebase", () => ({
@@ -26,7 +24,6 @@ describe('GamesList Component', () => {
 
     fireEvent.click(screen.getByText(/Gender/i)); 
     fireEvent.click(screen.getByTestId('women-dropdown-item'));
-
 
     const displayedGames = screen.getAllByTestId("game-card");
     displayedGames.forEach(gameCard => {

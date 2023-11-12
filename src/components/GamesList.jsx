@@ -9,7 +9,7 @@ import { useProfile } from "../utilities/profile";
 const GamesList = ({ games }) => {
 	const [profile, profileLoading, profileError] = useProfile();
 	const [user, error] = useDbData(`/users/${profile?.user?.uid}`);
-	console.log(user)
+
 	const attendedGames = !!user ? user?.["games-attended"] : [];
 
 	const [filteredGames, setFilteredGames] = useState(games);
@@ -26,7 +26,7 @@ const GamesList = ({ games }) => {
 		"Swimming": ["MSWIM"],
 		"Basketball": ["MBB", "WBB"]
 	};
-
+	
 	useEffect(() => {
 		handleCombinedFilter();
 	}, [sportFilter, genderFilter, timeFilter]);

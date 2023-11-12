@@ -7,10 +7,10 @@
 // const { initializeApp } = require("firebase/app");
 
 import { initializeApp } from "firebase/app";
-import { useCallback, useEffect, useState } from 'react';
-import { getDatabase, onValue, ref, update} from 'firebase/database';
+import { useCallback, useEffect, useState } from "react";
+import { getDatabase, onValue, ref, update } from "firebase/database";
 //import { getAnalytics } from "firebase/analytics";
-import { getAuth, onAuthStateChanged, signOut} from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,14 +18,14 @@ import { getAuth, onAuthStateChanged, signOut} from 'firebase/auth';
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 const firebaseConfig = {
-	apiKey: "AIzaSyBryjbyZ8gMrcE-guMryC7KTv8eVgvt5Ks",
-	authDomain: "wildcatracker.firebaseapp.com",
-	databaseURL: "https://wildcatracker-default-rtdb.firebaseio.com",
-	projectId: "wildcatracker",
-	storageBucket: "wildcatracker.appspot.com",
-	messagingSenderId: "748740578016",
-	appId: "1:748740578016:web:0b406fbe2576528ff81e85",
-	measurementId: "G-Y4FZZ4GRKH",
+  apiKey: "AIzaSyBryjbyZ8gMrcE-guMryC7KTv8eVgvt5Ks",
+  authDomain: "wildcatracker.firebaseapp.com",
+  databaseURL: "https://wildcatracker-default-rtdb.firebaseio.com",
+  projectId: "wildcatracker",
+  storageBucket: "wildcatracker.appspot.com",
+  messagingSenderId: "748740578016",
+  appId: "1:748740578016:web:0b406fbe2576528ff81e85",
+  measurementId: "G-Y4FZZ4GRKH",
 };
 
 // Initialize Firebase
@@ -47,45 +47,53 @@ export const database = getDatabase(app);
 //module.exports.database = getDatabase(app);
 
 export const useDbData = (path) => {
-	const [data, setData] = useState();
-	const [error, setError] = useState(null);
-  
-	useEffect(() => (
-	  onValue(ref(database, path), (snapshot) => {
-	   setData( snapshot.val() );
-	  }, (error) => {
-		setError(error);
-	  })
-	), [ path ]);
-	  
-	//console.log("data:", data, "error:", error);
+  const [data, setData] = useState();
+  const [error, setError] = useState(null);
 
-	return [ data, error ];
+  useEffect(
+    () =>
+      onValue(
+        ref(database, path),
+        (snapshot) => {
+          setData(snapshot.val());
+        },
+        (error) => {
+          setError(error);
+        }
+      ),
+    [path]
+  );
+
+  //console.log("data:", data, "error:", error);
+
+  return [data, error];
 };
 
 const makeResult = (error) => {
-	const timestamp = Date.now();
-	const message = error?.message || `Updated: ${new Date(timestamp).toLocaleString()}`;
-	return { timestamp, error, message };
+  const timestamp = Date.now();
+  const message =
+    error?.message || `Updated: ${new Date(timestamp).toLocaleString()}`;
+  return { timestamp, error, message };
 };
-  
-export const useDbUpdate = (path) => {
-	const [result, setResult] = useState();
-	const updateData = useCallback((value) => {
-		update(ref(database, path), value)
-		.then(() => setResult(makeResult()))
-		.catch((error) => setResult(makeResult(error)))
-	}, [database, path]);
 
-	return [updateData, result];
+export const useDbUpdate = (path) => {
+  const [result, setResult] = useState();
+  const updateData = useCallback(
+    (value) => {
+      update(ref(database, path), value)
+        .then(() => setResult(makeResult()))
+        .catch((error) => setResult(makeResult(error)));
+    },
+    [database, path]
+  );
+
+  return [updateData, result];
 };
 
 export const useAuthState = () => {
-	const [user, setUser] = useState();
+  const [user, setUser] = useState();
 
-	useEffect(() => (
-		onAuthStateChanged(getAuth(app), setUser)
-	), []);
+  useEffect(() => onAuthStateChanged(getAuth(app), setUser), []);
 
-	return [user];
+  return [user];
 };
