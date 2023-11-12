@@ -3,8 +3,8 @@ import NavBar from "./NavBar";
 import AttendedGamesList from "./AttendedGamesList";
 import AttendedGamesChart from "../AttendedGamesChart";
 import "./PointsPage.css";
-import { useProfile } from "../utilities/profile";
 import { useDbData } from "../utilities/firebase";
+import { useProfile } from "../utilities/profile";
 
 const historyWindows = ["Total", "Week", "Month"];
 
@@ -18,8 +18,10 @@ export const historyLookback = {
 const PointsPage = () => {
 	const [profile, profileLoading, profileError] = useProfile();
 	const userData = useDbData(`/users/${profile?.user?.uid}`);
+	console.log(userData)
 	const attendedGamesIds = userData.length > 1 && userData[0] ? userData[0]["games-attended"] : [];
 	const [data, error] = useDbData("/events/");
+	console.log(attendedGamesIds)
 	const attendedGames = attendedGamesIds.map(
 		(gameId) => data[gameId]
 	);

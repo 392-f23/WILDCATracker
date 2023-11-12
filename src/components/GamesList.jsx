@@ -9,6 +9,7 @@ import { useProfile } from "../utilities/profile";
 const GamesList = ({ games }) => {
 	const [profile, profileLoading, profileError] = useProfile();
 	const [user, error] = useDbData(`/users/${profile?.user?.uid}`);
+	console.log(user)
 	const attendedGames = !!user ? user?.["games-attended"] : [];
 
 	const [filteredGames, setFilteredGames] = useState(games);
@@ -48,15 +49,15 @@ const GamesList = ({ games }) => {
 		const newFiltered = Object.fromEntries(
 			Object.entries(filtered).filter(([key, game]) => {
 				if (genderFilter === "Gender") return true;
+				if (genderFilter === "Men" && game.eventKey === "FB") return true;
+        		if (genderFilter === "Men" && game.eventKey === "FHOCKEY") return true;
 				const matches = game.eventKey && game.eventKey[0] === genderFilter[0];
 				if (!matches) {
-					console.log("Filtered out game:", game);
 				}
 				return matches;
 			})
 		);
 
-		// console.log("Filtered games:", newFiltered);
 		filtered = newFiltered;
 
 		const currentDate = new Date();
@@ -155,7 +156,7 @@ const GamesList = ({ games }) => {
 						<Dropdown.Item onClick={() => handleGenderFilterChange("Men")}>
 							Men
 						</Dropdown.Item>
-						<Dropdown.Item onClick={() => handleGenderFilterChange("Women")}>
+						<Dropdown.Item data-testid="women-dropdown-item" onClick={() => handleGenderFilterChange("Women")}>
 							Women
 						</Dropdown.Item>
 					</Dropdown.Menu>
@@ -185,9 +186,9 @@ const GamesList = ({ games }) => {
 			<div className='games-list'>
 				{Object.entries(filteredGames).map(([id, game]) =>
 					attendedGames?.includes(id) ? (
-						<GameCard key={id} id={id} game={game} gameAdded={true} user={user} />
+						<GameCard key={id} id={id} game={game} gameAdded={true} user={user} data-testid="game-card"/>
 					) : (
-						<GameCard key={id} id={id} game={game} gameAdded={false} user={user} />
+						<GameCard key={id} id={id} game={game} gameAdded={false} user={user} data-testid="game-card" />
 					)
 				)}
 			</div>

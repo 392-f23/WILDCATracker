@@ -4,9 +4,8 @@ import "./GameCard.css";
 import { Link } from "react-router-dom";
 import { useProfile } from "../utilities/profile";
 import { useDbData, useDbUpdate } from "../utilities/firebase";
-import { LoginContext } from "../utilities/StateProvider";
 
-const GameCard = ({ id, game, gameAdded, user }) => {
+const GameCard = ({ id, game, gameAdded, user, ...props }) => {
 	const abbrevDict = {
 		SOC: "Soccer",
 		VB: "Volleyball",
@@ -17,6 +16,7 @@ const GameCard = ({ id, game, gameAdded, user }) => {
 		FENC: "Fencing",
 	};
 	const [profile, profileLoading, profileError] = useProfile();
+
 	if (profileError) return <h1>Error loading profile: {`${profileError}`}</h1>;
 	if (profileLoading) return <h1>Loading user profile</h1>;
 	if (!profile) return <h1>No profile data</h1>;
@@ -82,7 +82,7 @@ const GameCard = ({ id, game, gameAdded, user }) => {
 	const url = "/games/" + id + "/edit";
 
 	return (
-		<div className='card m-2 p-2'>
+		<div {...props} className='card m-2 p-2'>
 			<div
 				style={{
 					display: "flex",
@@ -148,7 +148,7 @@ const GameCard = ({ id, game, gameAdded, user }) => {
 							{game.location}
 						</a>
 					</div>
-					<button
+					<button aria-label='edit'
 						className={`game-card-button-${buttonStyle}`}
 						onClick={handleButtonClick}
 					>

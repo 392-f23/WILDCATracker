@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./HomePage.css";
 import mbbGamesData from "../utilities/mbbGames.json";
 import NavBar from "./NavBar";
 import { ref, get } from "firebase/database";
 import { database } from "../utilities/firebase";
+import { useProfile } from "../utilities/profile";
+//import { useAuthState } from "../utilities/firebase";
+//import { LoginContext } from "../utilities/StateProvider";
 
 const HomePage = () => {
 	const [showAllGames, setShowAllGames] = useState(false);
@@ -11,9 +14,10 @@ const HomePage = () => {
 	const today = new Date().toISOString().split("T")[0];
 	const pastGames = mbbGamesData.filter((game) => game.date < today);
 	const attendedGames = pastGames.filter((game) => game.attended);
-	const uid = localStorage.getItem("uid");
 
-	console.log(`users/${uid}`);
+	const [profile, profileLoading, profileError] = useProfile();
+	const uid = profile?.user?.uid;
+
 	const userRef = ref(database, `users/${uid}`);
 
 	const [displayName, setDisplayName] = useState("");
@@ -50,7 +54,7 @@ const HomePage = () => {
 				<p>Year: 3rd Year</p>
 				<p>Graduation Date: 2025</p>
 			</div> */}
-			<button
+			{/* <button
 				style={{
 					background: "rgb(57, 35, 89)",
 					borderRadius: "5px",
@@ -87,7 +91,7 @@ const HomePage = () => {
 						</li>
 					))}
 				</ul>
-			)}
+			)} */}
 		</div>
 	);
 };
