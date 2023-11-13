@@ -33,7 +33,7 @@ import { useAuthState } from "./utilities/firebase";
 
 const Main = () => {
   const [loginState] = useAuthState();
-  console.log(loginState);
+  //console.log(loginState);
   //if (!loginState.user && localStorage.getItem("user"))
   //	loginState.user = localStorage.getItem("user");
 
