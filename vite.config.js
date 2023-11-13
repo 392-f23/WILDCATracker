@@ -15,7 +15,6 @@ export default defineConfig({
     },
     exclude: [
       ...configDefaults.exclude,
-      "**/PointsPage.magevney.test.jsx",
       "**/WomanFilter.lau.test.jsx",
       "**/App.test.jsx",
     ],
