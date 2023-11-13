@@ -34,7 +34,7 @@ const PointsPage = () => {
 	);
 	pastGames.sort((a, b) => b.date - a.date);
 
-	const points = attendedGames.reduce((sum, game) => sum + parseInt(game.point), 0);
+	const points = attendedGames.filter((game) => new Date(game.date) <= new Date()).reduce((sum, game) => sum + parseInt(game.point), 0);
 	const [filteredGames, setFilteredGames] = useState(attendedGames);
 	const [window, setWindow] = useState("Total");
 	const [past, setPast] = useState(true);
@@ -54,7 +54,7 @@ const PointsPage = () => {
 			<div className='content'>
 				<NavBar></NavBar>
 				<div className="header">
-					<h1 style={{ textAlign: "center", fontSize: "60px", color: "rgb(98, 48, 174)" }}>{points} Points</h1>
+					<h1 data-testid="total-points" style={{ textAlign: "center", fontSize: "60px", color: "rgb(98, 48, 174)" }}>{points} Points</h1>
 					<input data-testid="toggle-chart-button" type="checkbox" className="btn-check" id="btn-check-outlined" defaultChecked={collapsed} onClick={() => setCollapsed(!collapsed)} />
 					<label className={
 						collapsed

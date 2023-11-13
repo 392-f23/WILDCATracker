@@ -80,3 +80,102 @@ describe("Test chart displays properly", () => {
     });
 
 });
+
+// ************* TESTING POINTS *************
+
+const mockSchedulePoints =
+{
+    "admins": {
+        "hfehefhkhefkjefh": true
+    },
+    "events": {
+        "2023-08-31-WSOC-BostonUniversity": {
+            "date": 1693699200000,
+            "eventKey": "WSOC",
+            "imgURL": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/nusports.com/images/logos/Boston-U.png",
+            "location": "Lanny and Sharon Martin Stadium (Soccer/Lacrosse)",
+            "locationURL": "https://nusports.com/facilities/lanny-and-sharon-martin-stadium-soccer-lacrosse-/5",
+            "opponent": "Boston University",
+            "point": 10,
+            "time": " 7 p.m. CT"
+        },
+        "2023-09-30-WSOC-BostonUniversity": {
+            "date": 1696032000000,
+            "eventKey": "WSOC",
+            "imgURL": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/nusports.com/images/logos/Boston-U.png",
+            "location": "Lanny and Sharon Martin Stadium (Soccer/Lacrosse)",
+            "locationURL": "https://nusports.com/facilities/lanny-and-sharon-martin-stadium-soccer-lacrosse-/5",
+            "opponent": "Boston University",
+            "point": 5,
+            "time": " 7 p.m. CT"
+        },
+        "2024-02-02-WSOC-BostonUniversity": {
+            "date": 1706832000000,
+            "eventKey": "WSOC",
+            "imgURL": "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/nusports.com/images/logos/Boston-U.png",
+            "location": "Lanny and Sharon Martin Stadium (Soccer/Lacrosse)",
+            "locationURL": "https://nusports.com/facilities/lanny-and-sharon-martin-stadium-soccer-lacrosse-/5",
+            "opponent": "Boston University",
+            "point": 20,
+            "time": " 7 p.m. CT"
+        }
+    },
+    "users": {
+        "hfejefefkeklefn": {
+            "displayName": "Test User",
+            "email": "tester@u.northwestern.edu",
+            "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocJHA367jsm-sV5pY67f_Q3rxnt74sHAOBSP8zeGxEHq=s96-c",
+            "points": 0,
+            "games-attended": ["2023-08-31-WSOC-BostonUniversity", "2023-09-30-WSOC-BostonUniversity", "2024-02-02-WSOC-BostonUniversity"]
+        }
+    }
+};
+//test that the total number of points on the points page is the actual sum of events that have been completed
+describe("Test the points page displays the correct total", () => {
+    it("Test that point total is correct and does not display future games", () => {
+        // Mock Firebase
+        vi.mock('../utilities/firebase');
+        useAuthState.mockReturnValue([{ displayName: "Test User" }]);
+        useDbUpdate.mockReturnValue([null, null]);
+        useDbData.mockImplementation((path) => {
+          if (path == "/events/") return [mockSchedulePoints.events, ""];
+          if (path == "/admins/") return [mockSchedulePoints.admins, ""];
+          if (path == "/users/") return [mockSchedulePoints.users, ""];
+          if (path == "/users/hfejefefkeklefn")
+            return [mockSchedulePoints.users.hfejefefkeklefn, ""];
+        });
+        vi.mock("../utilities/profile");
+        useProfile.mockReturnValue([
+          { user: { uid: "hfejefefkeklefn" }, isAdmin: false },
+        ]);
+        const { getByTestId } = render(<BrowserRouter><PointsPage /> </BrowserRouter>);
+
+        const points_div = getByTestId('total-points');
+        expect(points_div).to.exist;
+        expect(points_div.textContent).toContain("15");
+        
+    });
+    it("Test that point total is correct with only past game", () => {
+        // Mock Firebase
+        vi.mock('../utilities/firebase');
+        useAuthState.mockReturnValue([{ displayName: "Test User" }]);
+        useDbUpdate.mockReturnValue([null, null]);
+        useDbData.mockImplementation((path) => {
+          if (path == "/events/") return [mockSchedule.events, ""];
+          if (path == "/admins/") return [mockSchedule.admins, ""];
+          if (path == "/users/") return [mockSchedule.users, ""];
+          if (path == "/users/hfejefefkeklefn")
+            return [mockSchedule.users.hfejefefkeklefn, ""];
+        });
+        vi.mock("../utilities/profile");
+        useProfile.mockReturnValue([
+          { user: { uid: "hfejefefkeklefn" }, isAdmin: false },
+        ]);
+        const { getByTestId } = render(<BrowserRouter><PointsPage /> </BrowserRouter>);
+
+        const points_div = getByTestId('total-points');
+        expect(points_div).to.exist;
+        expect(points_div.textContent).toContain("10");
+        
+    });
+});
