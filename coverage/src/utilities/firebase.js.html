@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75.82% </span>
+                <span class="strong">64.64% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>69/91</span>
+                <span class='fraction'>64/99</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75.82% </span>
+                <span class="strong">64.64% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>69/91</span>
+                <span class='fraction'>64/99</span>
             </div>
         
             
@@ -153,7 +153,16 @@
 <a name='L88'></a><a href='#L88'>88</a>
 <a name='L89'></a><a href='#L89'>89</a>
 <a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -217,8 +226,15 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -227,23 +243,25 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span></td><td class="text"><pre class="prettyprint lang-js">// Import the functions you need from the SDKs you need
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Import the functions you need from the SDKs you need
 &nbsp;
 // Nodejs does not natively support import export syntax,
 // uncomment this when using the scrapper
@@ -252,10 +270,10 @@
 // const { initializeApp } = require("firebase/app");
 &nbsp;
 import { initializeApp } from "firebase/app";
-import { useCallback, useEffect, useState } from 'react';
-import { getDatabase, onValue, ref, update} from 'firebase/database';
+import { useCallback, useEffect, useState } from "react";
+import { getDatabase, onValue, ref, update } from "firebase/database";
 //import { getAnalytics } from "firebase/analytics";
-import { getAuth, onAuthStateChanged, signOut} from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 &nbsp;
@@ -263,14 +281,14 @@ import { getAuth, onAuthStateChanged, signOut} from 'firebase/auth';
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 &nbsp;
 const firebaseConfig = {
-	apiKey: "AIzaSyBryjbyZ8gMrcE-guMryC7KTv8eVgvt5Ks",
-	authDomain: "wildcatracker.firebaseapp.com",
-	databaseURL: "https://wildcatracker-default-rtdb.firebaseio.com",
-	projectId: "wildcatracker",
-	storageBucket: "wildcatracker.appspot.com",
-	messagingSenderId: "748740578016",
-	appId: "1:748740578016:web:0b406fbe2576528ff81e85",
-	measurementId: "G-Y4FZZ4GRKH",
+  apiKey: "AIzaSyBryjbyZ8gMrcE-guMryC7KTv8eVgvt5Ks",
+  authDomain: "wildcatracker.firebaseapp.com",
+  databaseURL: "https://wildcatracker-default-rtdb.firebaseio.com",
+  projectId: "wildcatracker",
+  storageBucket: "wildcatracker.appspot.com",
+  messagingSenderId: "748740578016",
+  appId: "1:748740578016:web:0b406fbe2576528ff81e85",
+  measurementId: "G-Y4FZZ4GRKH",
 };
 &nbsp;
 // Initialize Firebase
@@ -292,55 +310,64 @@ export const database = getDatabase(app);
 //module.exports.database = getDatabase(app);
 &nbsp;
 export const useDbData = <span class="fstat-no" title="function not covered" >(path) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >	const [data, setData] = useState();</span>
-<span class="cstat-no" title="statement not covered" >	const [error, setError] = useState(null);</span>
-<span class="cstat-no" title="statement not covered" >  </span>
-<span class="cstat-no" title="statement not covered" >	useEffect(() =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >	  onValue(ref(database, path), (snapshot) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >	   setData( snapshot.val() );</span>
-<span class="cstat-no" title="statement not covered" >	  }, (error) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		setError(error);</span>
-<span class="cstat-no" title="statement not covered" >	  })</span>
-<span class="cstat-no" title="statement not covered" >	), [ path ]);</span>
-<span class="cstat-no" title="statement not covered" >	  </span>
-<span class="cstat-no" title="statement not covered" >	//console.log("data:", data, "error:", error);</span>
+<span class="cstat-no" title="statement not covered" >  const [data, setData] = useState();</span>
+<span class="cstat-no" title="statement not covered" >  const [error, setError] = useState(null);</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >	return [ data, error ];</span>
+<span class="cstat-no" title="statement not covered" >  useEffect(</span>
+<span class="cstat-no" title="statement not covered" >    () =&gt;</span>
+<span class="cstat-no" title="statement not covered" >      onValue(</span>
+<span class="cstat-no" title="statement not covered" >        ref(database, path),</span>
+<span class="cstat-no" title="statement not covered" >        (snapshot) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          setData(snapshot.val());</span>
+<span class="cstat-no" title="statement not covered" >        },</span>
+<span class="cstat-no" title="statement not covered" >        (error) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >          setError(error);</span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+<span class="cstat-no" title="statement not covered" >      ),</span>
+<span class="cstat-no" title="statement not covered" >    [path]</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  //console.log("data:", data, "error:", error);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  return [data, error];</span>
 <span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
 const makeResult = <span class="fstat-no" title="function not covered" >(error) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >	const timestamp = Date.now();</span>
-<span class="cstat-no" title="statement not covered" >	const message = error?.message || `Updated: ${new Date(timestamp).toLocaleString()}`;</span>
-<span class="cstat-no" title="statement not covered" >	return { timestamp, error, message };</span>
+<span class="cstat-no" title="statement not covered" >  const timestamp = Date.now();</span>
+<span class="cstat-no" title="statement not covered" >  const message =</span>
+<span class="cstat-no" title="statement not covered" >    error?.message || `Updated: ${new Date(timestamp).toLocaleString()}`;</span>
+<span class="cstat-no" title="statement not covered" >  return { timestamp, error, message };</span>
 <span class="cstat-no" title="statement not covered" >};</span>
-  
-export const useDbUpdate = (path) =&gt; {
-	const [result, setResult] = useState();
-	const updateData = useCallback((value) =&gt; {
-<span class="cstat-no" title="statement not covered" >		update(ref(database, path), value)</span>
-<span class="cstat-no" title="statement not covered" >		.then(() =&gt; setResult(makeResult()))</span>
-<span class="cstat-no" title="statement not covered" >		.catch((error) =&gt; setResult(makeResult(error)))</span>
-	}, [database, path]);
 &nbsp;
-	return [updateData, result];
+export const useDbUpdate = (path) =&gt; {
+  const [result, setResult] = useState();
+  const updateData = useCallback(
+    (value) =&gt; {
+<span class="cstat-no" title="statement not covered" >      update(ref(database, path), value)</span>
+<span class="cstat-no" title="statement not covered" >        .then(() =&gt; setResult(makeResult()))</span>
+<span class="cstat-no" title="statement not covered" >        .catch((error) =&gt; setResult(makeResult(error)));</span>
+    },
+    [database, path]
+  );
+&nbsp;
+  return [updateData, result];
 };
 &nbsp;
-export const useAuthState = () =&gt; {
-	const [user, setUser] = useState();
-&nbsp;
-	useEffect(() =&gt; (
-		onAuthStateChanged(getAuth(app), setUser)
-	), []);
-&nbsp;
-	return [user];
-};</pre></td></tr></table></pre>
+export const useAuthState = <span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const [user, setUser] = useState();</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  useEffect(() =&gt; onAuthStateChanged(getAuth(app), setUser), []);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  return [user];</span>
+<span class="cstat-no" title="statement not covered" >};</span>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-12T18:56:42.410Z
+                at 2023-11-13T01:28:39.662Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

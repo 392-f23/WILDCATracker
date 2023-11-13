@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import { configDefaults } from "vitest/dist/config";
 import react from "@vitejs/plugin-react";
-import { resolve } from "node:path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,8 +18,5 @@ export default defineConfig({
       "**/WomanFilter.lau.test.jsx",
       "**/App.test.jsx",
     ],
-    resolve: {
-      alias: [{ find: "@", replacement: resolve(__dirname, "./src") }],
-    },
   },
 });

@@ -103,13 +103,11 @@ describe("Sport Type Filtering", () => {
       await user.click(basketballOption);
 
       // Selects CSS classes named card-title
-      const cardTitlesOnDisplay = await app.container.querySelectorAll(
-        ".card-title"
-      );
+      const cardTitlesOnDisplay = app.container.querySelectorAll(".card-title");
 
       // Assert card titles contain Basketball
       Array.from(cardTitlesOnDisplay).forEach((node) =>
-        //expect(node.textContent).toContain("Voleyball") //-- TEST results in an assertion error as expected
+        //expect(node.textContent).toContain("Voleyball") //-- TESTED results in an assertion error as expected
         expect(node.textContent).toContain("Basketball")
       );
     });
