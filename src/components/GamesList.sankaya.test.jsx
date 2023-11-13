@@ -80,17 +80,38 @@ const rb_emulator_get = (path) => {
 
 describe("Sport Type Filtering", () => {
   describe("When Basketball is selected", () => {
-    it("Only displays events that end with 'BB'", () => {
+    it("Only displays events that contains Basketball", async () => {
       useDbData.mockImplementation((path) => rb_emulator_get(path));
       useAuthState.mockReturnValue([RB.users.hfejefefkeklefn]);
       useProfile.mockReturnValue([
         { user: { uid: "hfejefefkeklefn" }, isAdmin: false },
       ]);
       useDbUpdate.mockReturnValue([null, null]);
-      render(<App />);
+      const user = userEvent.setup();
+      const app = render(<App />);
+
+      // Click on the 'Sport' filter button
       const sportFilterButton = screen.getByText(/Sport/i);
       expect(sportFilterButton).toBeInTheDocument();
-      userEvent.click(sportFilterButton);
+      user.click(sportFilterButton);
+
+      // Select the Basketball option
+      const basketballOption = await screen.findByRole("button", {
+        name: /Basketball/i,
+      });
+      expect(basketballOption).toBeInTheDocument();
+      await user.click(basketballOption);
+
+      // Selects CSS classes named card-title
+      const cardTitlesOnDisplay = await app.container.querySelectorAll(
+        ".card-title"
+      );
+
+      // Assert card titles contain Basketball
+      Array.from(cardTitlesOnDisplay).forEach((node) =>
+        //expect(node.textContent).toContain("Voleyball") //-- TEST results in an assertion error as expected
+        expect(node.textContent).toContain("Basketball")
+      );
     });
   });
 });
