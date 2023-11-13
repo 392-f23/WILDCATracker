@@ -55,7 +55,7 @@ const PointsPage = () => {
 				<NavBar></NavBar>
 				<div className="header">
 					<h1 style={{ textAlign: "center", fontSize: "60px", color: "rgb(98, 48, 174)" }}>{points} Points</h1>
-					<input type="checkbox" className="btn-check" id="btn-check-outlined" defaultChecked={collapsed} onClick={() => setCollapsed(!collapsed)} />
+					<input data-testid="toggle-chart-button" type="checkbox" className="btn-check" id="btn-check-outlined" defaultChecked={collapsed} onClick={() => setCollapsed(!collapsed)} />
 					<label className={
 						collapsed
 							? "chart-toggle-selected"
@@ -64,33 +64,35 @@ const PointsPage = () => {
 					{/* <button type="checkbox" className="btn-check chart-toggle-button" onClick={() => setCollapsed(!collapsed)}>Toggle Chart</button> */}
 				</div>
 				{collapsed && <div style={{ borderBottom: "2px solid lightgray", padding: "20px" }}>
-					<div className='button-group'>
-						{historyWindows.map((option) => (
-							<div key={option} style={{ margin: "auto" }}>
-								<input
-									type='radio'
-									className='btn-check'
-									name='btnradio'
-									id={option}
-									autoComplete='off'
-									defaultChecked={window == option}
-									onClick={() => filterGames(option)}
-								/>
-								<label
-									className={
-										option === window
-											? "time-chart-label-selected"
-											: "time-chart-label-unselected"
-									}
-									id={option}
-									htmlFor={option}
-								>
-									{option}
-								</label>
-							</div>
-						))}
+					<div data-testid="chart">
+						<div className='button-group'>
+							{historyWindows.map((option) => (
+								<div key={option} style={{ margin: "auto" }}>
+									<input
+										type='radio'
+										className='btn-check'
+										name='btnradio'
+										id={option}
+										autoComplete='off'
+										defaultChecked={window == option}
+										onClick={() => filterGames(option)}
+									/>
+									<label
+										className={
+											option === window
+												? "time-chart-label-selected"
+												: "time-chart-label-unselected"
+										}
+										id={option}
+										htmlFor={option}
+									>
+										{option}
+									</label>
+								</div>
+							))}
+						</div>
+						<AttendedGamesChart games={attendedGames} window={window} />
 					</div>
-					<AttendedGamesChart games={attendedGames} window={window} />
 				</div>}
 				<div className="bottom-half">
 					<div
