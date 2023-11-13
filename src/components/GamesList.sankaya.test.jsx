@@ -9,7 +9,7 @@ import App from "../App";
 vi.mock("../utilities/firebase");
 vi.mock("../utilities/profile");
 
-const RB = {
+const RD = {
   events: {
     "2023-09-01-WVB-IllinoisState": {
       date: 1693544400000,
@@ -73,16 +73,16 @@ const RB = {
 };
 
 const rb_emulator_get = (path) => {
-  if (/events/.test(path)) return [RB.events, null];
-  if (/users/.test(path)) return [RB.users.hfejefefkeklefn, null];
-  if (/admins/.test(path)) return [RB.admins.hfehefhkhefkjefh, null];
+  if (/events/.test(path)) return [RD.events, null];
+  if (/users/.test(path)) return [RD.users.hfejefefkeklefn, null];
+  if (/admins/.test(path)) return [RD.admins.hfehefhkhefkjefh, null];
 };
 
 describe("Sport Type Filtering", () => {
   describe("When Basketball is selected", () => {
     it("Only displays events that contains Basketball", async () => {
       useDbData.mockImplementation((path) => rb_emulator_get(path));
-      useAuthState.mockReturnValue([RB.users.hfejefefkeklefn]);
+      useAuthState.mockReturnValue([RD.users.hfejefefkeklefn]);
       useProfile.mockReturnValue([
         { user: { uid: "hfejefefkeklefn" }, isAdmin: false },
       ]);
