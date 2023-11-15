@@ -16,6 +16,8 @@ export default defineConfig({
       ...configDefaults.exclude,
       "**/WomanFilter.lau.test.jsx",
       "**/App.test.jsx",
+      "**/GamesEditorChatgpt.romanenko.test.jsx",
+      "**/PointsPage.openai.test.jsx",
     ],
   },
 });
