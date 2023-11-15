@@ -105,7 +105,5 @@ describe("Form Validation Displays Intended Warning Messages", () => {
 
         fireEvent.change(input3, {target: {value: '7 pm'}})
         expect(screen.getByText(/must follow the structure/)).toBeDefined();
-
-
 	});
 });
