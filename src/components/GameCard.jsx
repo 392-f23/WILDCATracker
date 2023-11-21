@@ -136,6 +136,7 @@ const GameCard = ({ id, game, gameAdded, user, ...props }) => {
 
 					<h6
 						className='card-subtitle mb-2 text-muted'
+						data-testid='event-time-str'
 						style={{ marginTop: "20px" }}
 					>
 						{new Date(game.date).toDateString()} {game.time}
