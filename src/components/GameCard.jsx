@@ -96,7 +96,7 @@ const GameCard = ({ id, game, gameAdded, user, ...props }) => {
 					<div className='card-title'>
 						{getGameTitle(game.eventKey)}
 						{profile?.isAdmin && (
-							<div className='card-edit-button'>
+							<div className='card-edit-button' data-testid='admin-edit-button'>
 								<Link to={url}>
 									<button
 										style={{ background: "transparent", border: "transparent" }}
@@ -148,7 +148,8 @@ const GameCard = ({ id, game, gameAdded, user, ...props }) => {
 							{game.location}
 						</a>
 					</div>
-					<button aria-label='edit'
+					<button
+						aria-label='edit'
 						className={`game-card-button-${buttonStyle}`}
 						onClick={handleButtonClick}
 					>
