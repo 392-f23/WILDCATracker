@@ -18,6 +18,8 @@ export default defineConfig({
       "**/App.test.jsx",
       "**/GamesEditorChatgpt.romanenko.test.jsx",
       "**/PointsPage.openai.test.jsx",
+      "**/Filter.openai.test.jsx",
+      "**/FutureFilterPoints.lau.test.jsx",
     ],
   },
 });
